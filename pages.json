@@ -11,6 +11,18 @@
 	// 	}]
 	// },
 	"pages": [
+		{
+		    "path" : "pages/shop/index",
+		    "style" : {}
+		}
+		,{
+		    "path" : "pages/shop/search",
+		    "style" : {}
+		}
+		,{
+		    "path" : "pages/shop/cart",
+		    "style" : {}
+		},
 		// 演示-组件
 		{
 			"path": "pages/example/components",
@@ -81,18 +93,7 @@
 				"navigationBarTitleText": "平台使用协议"
 			}
 		}
-	    ,{
-            "path" : "pages/shop/index",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/shop/search",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/shop/cart",
-            "style" : {}
-        }
+	    
     ],
 	"subPackages": [{
 			"root": "pages/componentsC",
