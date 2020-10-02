@@ -14,11 +14,15 @@
 		<view class="buttom">
 			<view class="loginType">
 				<view class="wechat item">
-					<view class="icon"><u-icon size="70" name="weixin-fill" color="rgb(83,194,64)"></u-icon></view>
+					<view class="icon">
+						<u-icon size="70" name="weixin-fill" color="rgb(83,194,64)"></u-icon>
+					</view>
 					微信
 				</view>
 				<view class="QQ item">
-					<view class="icon"><u-icon size="70" name="qq-fill" color="rgb(17,183,233)"></u-icon></view>
+					<view class="icon">
+						<u-icon size="70" name="qq-fill" color="rgb(17,183,233)"></u-icon>
+					</view>
 					QQ
 				</view>
 			</view>
@@ -33,109 +37,125 @@
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			tel: '',
-		}
-	},
-	computed: {
-		inputStyle() {
-			let style = {};
-			if(this.tel && this.tel.length == 11 && this.tel.startsWith('1')) {
-				style.color = "#fff";
-				style.backgroundColor = this.$u.color['warning'];
+	export default {
+		data() {
+			return {
+				tel: '',
 			}
-			return style;
-		}
-	},
-	methods: {
-		submit() {
-
-			if(!(this.tel && this.tel.length == 11 && this.tel.startsWith('1'))) {
-								this.$u.toast('请输入正确手机号');
-				return ;
-			}
-			this.$u.get('sendSms',{mobile:this.tel}).then( res => {
-				this.$u.route({
-					url: '/pages/login/smsCode'
-				})
-			})
 		},
-		goPage(url){
-			this.$u.route({
-				url:url
-			})
+		computed: {
+			inputStyle() {
+				let style = {};
+				if (this.tel && this.tel.length == 11 && this.tel.startsWith('1')) {
+					style.color = "#fff";
+					style.backgroundColor = this.$u.color['warning'];
+				}
+				return style;
+			}
+		},
+		methods: {
+			submit() {
+
+				if (!(this.tel && this.tel.length == 11 && this.tel.startsWith('1'))) {
+					this.$u.toast('请输入正确手机号');
+					return;
+				}
+				this.$u.post('sendSmsCode?mobile='+this.tel).then(res => {
+					console.log("res",res);
+					this.$u.route({
+						url: '/pages/login/smsCode',
+						params:{
+							mobile:this.tel
+						}
+					})
+				}).catch( res => {
+					console.log("err",res);
+					uni.showToast({
+					    title: res.data.message,
+						icon:'none',
+					});
+				})
+			},
+			goPage(url) {
+				this.$u.route({
+					url: url
+				})
+			}
 		}
-	}
-};
+	};
 </script>
 
 <style lang="scss" scoped>
-.wrap {
-	font-size: 28rpx;
-	.content {
-		width: 600rpx;
-		margin: 80rpx auto 0;
+	.wrap {
+		font-size: 28rpx;
 
-		.title {
-			text-align: left;
-			font-size: 60rpx;
-			font-weight: 500;
-			margin-bottom: 100rpx;
-		}
-		input {
-			text-align: left;
-			margin-bottom: 10rpx;
-			padding-bottom: 6rpx;
-		}
-		.tips {
-			color: $u-type-info;
-			margin-bottom: 60rpx;
-			margin-top: 8rpx;
-		}
-		.getSmsCode {
-			background-color: rgb(253, 243, 208);
-			color: $u-tips-color;
-			border: none;
-			font-size: 30rpx;
-			padding: 12rpx 0;
-			
-			&::after {
+		.content {
+			width: 600rpx;
+			margin: 80rpx auto 0;
+
+			.title {
+				text-align: left;
+				font-size: 60rpx;
+				font-weight: 500;
+				margin-bottom: 100rpx;
+			}
+
+			input {
+				text-align: left;
+				margin-bottom: 10rpx;
+				padding-bottom: 6rpx;
+			}
+
+			.tips {
+				color: $u-type-info;
+				margin-bottom: 60rpx;
+				margin-top: 8rpx;
+			}
+
+			.getSmsCode {
+				background-color: rgb(253, 243, 208);
+				color: $u-tips-color;
 				border: none;
+				font-size: 30rpx;
+				padding: 12rpx 0;
+
+				&::after {
+					border: none;
+				}
 			}
-		}
-		.alternative {
-			color: $u-tips-color;
-			display: flex;
-			justify-content: space-between;
-			margin-top: 30rpx;
-		}
-	}
-	.buttom {
-		.loginType {
-			display: flex;
-			padding: 350rpx 150rpx 150rpx 150rpx;
-			justify-content:space-between;
-			
-			.item {
+
+			.alternative {
+				color: $u-tips-color;
 				display: flex;
-				flex-direction: column;
-				align-items: center;
-				color: $u-content-color;
-				font-size: 28rpx;
+				justify-content: space-between;
+				margin-top: 30rpx;
 			}
 		}
-		
-		.hint {
-			padding: 20rpx 40rpx;
-			font-size: 20rpx;
-			color: $u-tips-color;
-			
-			.link {
-				color: $u-type-warning;
+
+		.buttom {
+			.loginType {
+				display: flex;
+				padding: 350rpx 150rpx 150rpx 150rpx;
+				justify-content: space-between;
+
+				.item {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					color: $u-content-color;
+					font-size: 28rpx;
+				}
+			}
+
+			.hint {
+				padding: 20rpx 40rpx;
+				font-size: 20rpx;
+				color: $u-tips-color;
+
+				.link {
+					color: $u-type-warning;
+				}
 			}
 		}
 	}
-}
 </style>

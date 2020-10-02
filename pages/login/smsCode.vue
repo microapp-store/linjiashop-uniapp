@@ -17,6 +17,7 @@
 export default {
 	data() {
 		return {
+			mobile:'',
 			maxlength: 4,
 			value: '',
 			second: 3,
@@ -25,7 +26,9 @@ export default {
 		};
 	},
 	computed: {},
-	onLoad() {
+	onLoad(option) {
+		console.log("option",option)
+		this.mobile = option.mobile;
 		// this.getCaptcha()
 		let interval = setInterval(() => {
 			this.second--;
@@ -57,9 +60,10 @@ export default {
 		},
 		// 输入完验证码最后一位执行
 		finish(value) {
-			console.log('finish', value);
-			const params = {mobile:'',smsCode:value}
-			this.$u.post('login',params).then( res=> {
+			const params = {mobile:this.mobile,smsCode:value}
+			this.$u.post('loginOrReg?mobile='+this.mobile+'&smsCode='+value).then( res=> {
+				this.$u.vuex('vuex_token', res.token);
+				this.$u.vuex('vuex_user',res.user);
 				this.$u.route({
 					type:'switchTab',
 					url:'/pages/user/profile'
