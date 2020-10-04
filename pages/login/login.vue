@@ -70,10 +70,7 @@
 					})
 				}).catch( res => {
 					console.log("err",res);
-					uni.showToast({
-					    title: res.data.message,
-						icon:'none',
-					});
+					this.$u.toast( res.data.message);
 				})
 			},
 			goPage(url) {

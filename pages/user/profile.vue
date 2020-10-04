@@ -55,7 +55,6 @@
 		},
 		methods: {
 			openPage(url){
-				console.log('url',url);
 				this.$u.route({
 					url: url
 				})

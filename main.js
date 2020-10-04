@@ -61,4 +61,9 @@ Vue.use(httpInterceptor, app)
 import httpApi from '@/common/http.api.js'
 Vue.use(httpApi, app)
 
+
+import config from "@/common/config.js"
+
+Vue.prototype.baseApi = config.baseApi;
+
 app.$mount()

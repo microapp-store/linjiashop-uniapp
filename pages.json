@@ -94,6 +94,18 @@
 			}
 		}
 	    
+        ,{
+            "path" : "pages/goods/goods",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/goods/list",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/topic/detail",
+            "style" : {}
+        }
     ],
 	"subPackages": [{
 			"root": "pages/componentsC",
@@ -876,7 +888,7 @@
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uView",
+		"navigationBarTitleText": "邻家小铺",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF"
 	},
