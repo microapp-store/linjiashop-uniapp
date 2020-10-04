@@ -1,8 +1,8 @@
 {
-    "name" : "linjiashop-uniapp",
+    "name" : "邻家小铺",
     "appid" : "__UNI__4ED93C0",
-    "description" : "多平台快速开发的UI框架",
-    "versionName" : "1.7.3",
+    "description" : "轻量、简介的开源小商城系统",
+    "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
     "app-plus" : {

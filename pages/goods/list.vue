@@ -170,5 +170,6 @@
 
 	.gl-price {
 		font-size: 24rpx;
+		color: #FA3534;
 	}
 </style>

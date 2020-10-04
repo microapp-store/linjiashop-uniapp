@@ -1,34 +1,29 @@
 <p align="center">
-    <img alt="logo" src="https://uviewui.com/common/logo.png" width="120" height="120" style="margin-bottom: 10px;">
+    <img alt="logo" src="http://microapp.gitee.io/linjiashop/logo.jpg" width="120" height="120" style="margin-bottom: 10px;">
 </p>
 <h3 align="center" style="margin: 30px 0 30px;font-weight: bold;font-size:40px;">uView</h3>
-<h3 align="center">多平台快速开发的UI框架</h3>
+<h3 align="center">邻家小铺uniapp（全平台）版本</h3>
 
-[![star](https://gitee.com/xuqu/uView/badge/star.svg?theme=gvp)](https://gitee.com/xuqu/uView/stargazers)
-[![fork](https://gitee.com/xuqu/uView/badge/fork.svg?theme=gvp)](https://gitee.com/xuqu/uView/members)
-[![stars](https://img.shields.io/github/stars/YanxinNet/uView?style=flat-square&logo=GitHub)](https://github.com/YanxinNet/uView)
-[![forks](https://img.shields.io/github/forks/YanxinNet/uView?style=flat-square&logo=GitHub)](https://github.com/YanxinNet/uView)
-[![issues](https://img.shields.io/github/issues/YanxinNet/uView?style=flat-square&logo=GitHub)](https://github.com/YanxinNet/uView/issues)
-[![Website](https://img.shields.io/badge/uView-up-blue?style=flat-square)](https://uviewui.com)
-[![release](https://img.shields.io/github/v/release/YanxinNet/uView?style=flat-square)](https://gitee.com/xuqu/uView/releases)
-[![license](https://img.shields.io/github/license/YanxinNet/uView?style=flat-square)](https://en.wikipedia.org/wiki/MIT_License)
+[![star](https://gitee.com/microapp/linjiashop-uniapp/badge/star.svg)](https://gitee.com/microapp/linjiashop-uniapp/stargazers)
+[![fork](https://gitee.com/microapp/linjiashop-uniapp/badge/fork.svg)](https://gitee.com/microapp/linjiashop-uniapp/members)
+[![stars](https://img.shields.io/github/stars/microapp-store/linjiashop-uniapp?style=flat-square&logo=GitHub)](https://github.com/microapp-store/linjiashop-uniapp)
+[![forks](https://img.shields.io/github/forks/microapp-store/linjiashop-uniapp?style=flat-square&logo=GitHub)](https://github.com/microapp-store/linjiashop-uniapp)
+[![issues](https://img.shields.io/github/issues/microapp-store/linjiashop-uniapp?style=flat-square&logo=GitHub)](https://github.com/microapp-store/linjiashop-uniapp/issues)
+[![Website](https://img.shields.io/badge/uView-up-blue?style=flat-square)](http://microapp.gitee.io/linjiashop)
+[![release](https://img.shields.io/github/v/release/microapp-store/linjiashop-uniapp?style=flat-square)](https://gitee.com/microapp-store/linjiashop-uniapp/releases)
+[![license](https://img.shields.io/github/license/microapp-store/linjiashop-uniapp?style=flat-square)](https://en.wikipedia.org/wiki/MIT_License)
 
 ## 说明
 
-uView UI，是[uni-app](https://uniapp.dcloud.io/)生态优秀的UI框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水
+linjiashop-uniapp，是[邻家小铺](http://microapp.gitee.io/linjiashop/)的uniapp版本，通过uniapp技术大道一套代码覆盖全平台(H5,Android,IOS,小程序)的目的
 
-## [官方文档：https://www.uviewui.com](https://www.uviewui.com)
+## [官方文档：http://microapp.gitee.io/linjiashop/](http://microapp.gitee.io/linjiashop/)
 
-### [点击加群交流反馈：1129077272](https://qm.qq.com/cgi-bin/qm/qr?k=1FfucLpozYbnb7FWo_KsqAdEi1mE3Qrf&jump_from=webapi)
+### [点击加群交流反馈：254059156](http://qm.qq.com/cgi-bin/qm/qr?k=EEHjlB4XyM-Kh2eMCbRPRoT38-V3au0T&authKey=NE856fZKPJLjtJTwOA1MlWWtcATVwT4e3zhjCOHeye8am2posApW%2Fw%3D%3D&group_code=254059156)
 
 ## 特性
 
-- 兼容安卓，iOS，微信小程序，H5，QQ小程序，百度小程序，支付宝小程序，头条小程序
-- 60+精选组件，功能丰富，多端兼容，让您快速集成，开箱即用
-- 众多贴心的JS利器，让您飞镖在手，召之即来，百步穿杨
-- 众多的常用页面和布局，让您专注逻辑，事半功倍
-- 详尽的文档支持，现代化的演示效果
-- 按需引入，精简打包体积
+- 一套代码兼容安卓，iOS，微信小程序，H5，QQ小程序，（百度小程序，支付宝小程序，头条小程序等其他平台也可以通过简单的适配进行兼容）
 
 
 ## 预览
@@ -41,25 +36,25 @@ uView UI，是[uni-app](https://uniapp.dcloud.io/)生态优秀的UI框架，全�
 
 ## 友情链接
 
-#### **vue-admin-beautiful** —— [企业级、通用型中后台前端解决方案（基于vue/cli 4 最新版，同时支持电脑，手机，平板）](https://github.com/chuzhixin/vue-admin-beautiful)
+#### **linjiashop** —— [基于SpringBoot和Vue.js的轻量级小商城](http://microapp.gitee.io/linjiashop/)
 
-#### **vue-admin-beautiful** —— [在线演示](http://beautiful.panm.cn/vue-admin-beautiful/#/index)
+#### **linjiashop-flutter** —— [邻家小铺的flutter版本](https://gitee.com/microapp/linjiashop-flutter)
 
-#### **pl-table** —— [ 完美解决 element 万级表格数据渲染卡顿问题](https://github.com/livelyPeng/pl-table)
+#### **web-flash** —— [基于SpringBoot和Vue.js 后台管理脚手架](https://enilu.gitee.io/web-flash/)
 
-#### **luch-request** —— [基于 Promise 开发的 uni-app 跨平台、项目级别的请求库，它有更小的体积，易用的 api，方便简单的自定义能力](https://www.quanzhan.co/luch-request/)
+#### **material-admin** —— [web-flash的单体版本（相对于web-flash的前后端分离版本）](https://enilu.gitee.io/material-admin/)
 <br>
 
 ## 链接
 
-- [官方文档](https://uviewui.com/)
+- [官方文档](http://microapp.gitee.io/linjiashop/)
 - [更新日志](https://uviewui.com/components/changelog.html)
 - [升级指南](https://uviewui.com/components/changelog.html)
 - [关于我们](https://uviewui.com/cooperation/about.html)
 
 ## 交流反馈
 
-欢迎加入我们的QQ群交流反馈：[点此跳转](https://www.uviewui.com/components/addQQGroup.html)
+欢迎加入QQ群交流反馈：[254059156](http://qm.qq.com/cgi-bin/qm/qr?k=EEHjlB4XyM-Kh2eMCbRPRoT38-V3au0T&authKey=NE856fZKPJLjtJTwOA1MlWWtcATVwT4e3zhjCOHeye8am2posApW%2Fw%3D%3D&group_code=254059156)
 
 ## 安装
 

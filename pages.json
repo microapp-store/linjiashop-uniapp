@@ -21,8 +21,50 @@
 		}
 		,{
 		    "path" : "pages/shop/cart",
-		    "style" : {}
+		   "style": {
+		   	"navigationBarTitleText": "购物车"
+		   }
 		},
+		{
+			"path": "pages/user/profile",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/login/smsCode",
+			"style": {
+				"navigationBarTitleText": "登录获取验证码"
+			}
+		}, {
+			"path": "pages/login/privateProtocol",
+			"style": {
+				"navigationBarTitleText": "隐私协议"
+			}
+		}, {
+			"path": "pages/login/userProtocol",
+			"style": {
+				"navigationBarTitleText": "平台使用协议"
+			}
+		}	    
+        ,{
+            "path" : "pages/goods/goods",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/goods/list",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/topic/detail",
+            "style" : {}
+        },
 		// 演示-组件
 		{
 			"path": "pages/example/components",
@@ -64,48 +106,7 @@
 					"popGesture": "none"
 				}
 			}
-		},
-		{
-			"path": "pages/user/profile",
-			"style": {
-				"navigationBarTitleText": "我的"
-			}
-		},
-		{
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "登录"
-			}
-		},
-		{
-			"path": "pages/login/smsCode",
-			"style": {
-				"navigationBarTitleText": "登录获取验证码"
-			}
-		}, {
-			"path": "pages/login/privateProtocol",
-			"style": {
-				"navigationBarTitleText": "隐私协议"
-			}
-		}, {
-			"path": "pages/login/userProtocol",
-			"style": {
-				"navigationBarTitleText": "平台使用协议"
-			}
 		}
-	    
-        ,{
-            "path" : "pages/goods/goods",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/goods/list",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/topic/detail",
-            "style" : {}
-        }
     ],
 	"subPackages": [{
 			"root": "pages/componentsC",

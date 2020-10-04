@@ -2,7 +2,7 @@
 // 同时，我们也可以在此使用getApp().globalData，如果你把token放在getApp().globalData的话，也是可以使用的
 const install = (Vue, vm) => {
 	Vue.prototype.$u.http.setConfig({
-		baseUrl: 'http://localhost:8081/',
+		baseUrl: 'http://linjiashop.microapp.store/prod-api',
 		showLoading: true, // 是否显示请求中的loading
 		loadingText: '请求中...', // 请求loading中的文字提示
 		loadingTime: 800, // 在此时间内，请求还没回来的话，就显示加载中动画，单位ms

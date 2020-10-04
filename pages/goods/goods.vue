@@ -24,7 +24,7 @@
 					<u-icon name="heart" :size="40" :color="$u.color[likeColor]"></u-icon>
 					<view class="text u-line-1">收藏</view>
 				</view>
-				<view class="item car">
+				<view class="item car" @click="toCart">
 					<u-badge class="car-num" :count="cartCount" type="error" :offset="[-3, -6]"></u-badge>
 					<u-icon name="shopping-cart" :size="40" :color="$u.color['contentColor']"></u-icon>
 					<view class="text u-line-1">购物车</view>
@@ -107,6 +107,12 @@
 				this.$u.route({
 					type: 'switchTab',
 					url: '/pages/shop/index'
+				})
+			},
+			toCart(){
+				this.$u.route({
+					type: 'switchTab',
+					url: '/pages/shop/cart'
 				})
 			},
 			formatPrice() {
