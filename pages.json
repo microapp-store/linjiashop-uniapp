@@ -10,20 +10,20 @@
 	// 		"query": "uuid=c4bba940-f69e-11ea-a419-6bafda9d095e&__id__=1" //启动参数，在页面的onLoad函数里面得到
 	// 	}]
 	// },
-	"pages": [
-		{
-		    "path" : "pages/shop/index",
-		    "style" : {}
-		}
-		,{
-		    "path" : "pages/shop/search",
-		    "style" : {}
-		}
-		,{
-		    "path" : "pages/shop/cart",
-		   "style": {
-		   	"navigationBarTitleText": "购物车"
-		   }
+	"pages": [{
+			"path": "pages/shop/index",
+			"style": {}
+		}, {
+			"path": "pages/shop/search",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选
+			}
+		}, {
+			"path": "pages/shop/cart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
 		},
 		{
 			"path": "pages/user/profile",
@@ -52,17 +52,23 @@
 			"style": {
 				"navigationBarTitleText": "平台使用协议"
 			}
-		}	    
-        ,{
-            "path" : "pages/goods/goods",
-            "style" : {}
+		}, {
+			"path": "pages/goods/goods",
+			"style": {}
+		}, {
+			"path": "pages/goods/list",
+			"style": {}
+		}, {
+			"path": "pages/topic/detail",
+			"style": {}
+		},{
+            "path" : "pages/order/list",
+           "style": {
+           	"navigationBarTitleText": "订单"
+           }
         }
         ,{
-            "path" : "pages/goods/list",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/topic/detail",
+            "path" : "pages/order/detail",
             "style" : {}
         },
 		// 演示-组件
@@ -107,6 +113,7 @@
 				}
 			}
 		}
+	    
     ],
 	"subPackages": [{
 			"root": "pages/componentsC",
@@ -921,7 +928,7 @@
 				"iconPath": "static/img/nav/user.png",
 				"selectedIconPath": "static/img/nav/user_sel.png",
 				"text": "我的"
-			}			 
+			}
 		]
 	}
 }
