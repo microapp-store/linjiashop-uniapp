@@ -30,16 +30,7 @@ export default {
 		console.log("option",option)
 		this.mobile = option.mobile;
 		// this.getCaptcha()
-		let interval = setInterval(() => {
-			this.second--;
-			if (this.second <= 0) {
-				this.show = true;
-				if (this.value.lenth != 4) {
-					this.error = true;
-				}
-				clearInterval(interval);
-			}
-		}, 1000);
+	 
 	},
 	methods: {
 		// 收不到验证码选择时的选择

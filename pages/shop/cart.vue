@@ -48,7 +48,7 @@
 				rightText: '编辑'
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.init();
 		},
 		methods: {
@@ -68,8 +68,6 @@
 
 						this.allCartItem = this.checkedCartItem
 						this.cartList = cartList
-					}).catch((err) => {
-						console.log(err)
 					})
 				}
 			},

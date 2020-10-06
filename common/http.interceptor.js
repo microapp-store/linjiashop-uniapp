@@ -3,6 +3,7 @@
 const install = (Vue, vm) => {
 	Vue.prototype.$u.http.setConfig({
 		baseUrl: 'http://linjiashop.microapp.store/prod-api',
+		// baseUrl:'http://localhost:8081',
 		showLoading: true, // 是否显示请求中的loading
 		loadingText: '请求中...', // 请求loading中的文字提示
 		loadingTime: 800, // 在此时间内，请求还没回来的话，就显示加载中动画，单位ms
@@ -49,6 +50,21 @@ const install = (Vue, vm) => {
 			//todo 统一处理错误信息
 			return false;
 		}
+	}
+	//异常统一处理
+	Vue.prototype.$u.http.interceptor.error = (res) => {
+		console.log('error',res);
+		if(res.statusCode == 401){
+			//跳转至登录页面
+			Vue.prototype.$u.route('/pages/login/login');
+			return true;
+		}else{
+			if(res.data.message){
+				Vue.prototype.$u.toast(res.data.message);
+				return false;
+			}
+		}
+		 return false;
 	}
 }
 

@@ -69,7 +69,19 @@ class Request {
 						// 		title: response.errMsg
 						// 	});
 						// }
-						reject(response)
+						// 交由外部统一的异常处理- by enilu
+						if (this.interceptor.error && typeof this.interceptor.error === 'function') {
+							let resInterceptors = this.interceptor.error(response);
+							if (resInterceptors !== false) {
+								resolve(resInterceptors);
+							} else {
+								reject(response)
+							}
+						} else {
+							// 如果不是返回原始数据(originalData=false)，且没有拦截器的情况下，返回纯数据给then回调
+							reject(response)
+						}
+						
 					}
 				}
 			}
@@ -122,7 +134,9 @@ class Request {
 			// 请求前的拦截
 			request: null,
 			// 请求后的拦截
-			response: null
+			response: null,
+			//异常统一处理
+			error:null,
 		}
 
 		// get请求
