@@ -22,7 +22,8 @@
 		}, {
 			"path": "pages/shop/cart",
 			"style": {
-				"navigationBarTitleText": "购物车"
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选
 			}
 		},
 		{
@@ -61,16 +62,15 @@
 		}, {
 			"path": "pages/topic/detail",
 			"style": {}
-		},{
-            "path" : "pages/order/list",
-           "style": {
-           	"navigationBarTitleText": "订单"
-           }
-        }
-        ,{
-            "path" : "pages/order/detail",
-            "style" : {}
-        },
+		}, {
+			"path": "pages/order/list",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		}, {
+			"path": "pages/order/detail",
+			"style": {}
+		},
 		// 演示-组件
 		{
 			"path": "pages/example/components",
@@ -113,15 +113,15 @@
 				}
 			}
 		}
-	    
-        ,{
-            "path" : "pages/favorite/favorite",
+
+		, {
+			"path": "pages/favorite/favorite",
 			"style": {
 				"navigationStyle": "custom", // 隐藏系统导航栏
 				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选
 			}
-        }
-    ],
+		}
+	],
 	"subPackages": [{
 			"root": "pages/componentsC",
 			"pages": [

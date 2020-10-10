@@ -101,6 +101,10 @@
 						idChechkedArr.push(this.favList[i].id);
 					}
 				}
+				if(idChechkedArr.length == 0){
+					this.$u.toast('请选择要移出收藏的商品');
+					return ;
+				}
 				console.log('ids',idChechkedArr);
 				this.$u.post('user/favorite/dislikeBatch',idChechkedArr).then( res => {
 					this.$u.toast('已取消收藏');
