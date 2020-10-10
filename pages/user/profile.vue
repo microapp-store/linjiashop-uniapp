@@ -27,9 +27,10 @@
 		
 		<view class="u-m-t-20">
 			<u-cell-group>
-				<u-cell-item icon="bell" title="消息中心"></u-cell-item>
-				<u-cell-item icon="star" title="我的收藏"></u-cell-item>
-				<u-cell-item icon="heart" title="我的关注"></u-cell-item>
+				<u-cell-item icon="bell" title="收货地址"></u-cell-item>
+				<u-cell-item icon="star" @click="openPage('/pages/favorite/favorite')" title="喜欢的商品"></u-cell-item>
+				<u-cell-item icon="integral" title="我的积分"></u-cell-item>
+				<u-cell-item icon="coupon" title="我的优惠券"></u-cell-item>
 			</u-cell-group>
 		</view>
 		

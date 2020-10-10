@@ -168,6 +168,7 @@
 	}
 
 	.navigation {
+		width:100%;
 		display: flex;
 		position: fixed;
 		bottom: 0;
