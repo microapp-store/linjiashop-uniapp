@@ -70,7 +70,25 @@
 		}, {
 			"path": "pages/order/detail",
 			"style": {}
-		},
+		}, {
+			"path": "pages/favorite/favorite",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选
+			}
+		}
+	    ,{
+            "path" : "pages/address/list",
+           "style": {
+           	"navigationBarTitleText": "收货地址"
+           }
+        }
+        ,{
+            "path" : "pages/address/address",
+           "style": {
+           	"navigationBarTitleText": "编辑收货地址"
+           }
+        },
 		// 演示-组件
 		{
 			"path": "pages/example/components",
@@ -114,14 +132,8 @@
 			}
 		}
 
-		, {
-			"path": "pages/favorite/favorite",
-			"style": {
-				"navigationStyle": "custom", // 隐藏系统导航栏
-				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选
-			}
-		}
-	],
+		
+    ],
 	"subPackages": [{
 			"root": "pages/componentsC",
 			"pages": [

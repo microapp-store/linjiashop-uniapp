@@ -175,14 +175,14 @@
 				if(this.rightText=='编辑'){
 					//结算
 					console.log('结算',idArr);
+					
 				}
 				if(this.rightText == '完成'){
 					//将商品移出购物车
 					this.$u.delete('user/cart',idArr).then( res => {
 						this.$u.toast('成功移出商品');
 						this.init();
-					});
-					console.log('将商品移出购物车',idArr);
+					}); 
 				}
 			}
 		}
