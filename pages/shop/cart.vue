@@ -175,6 +175,12 @@
 				if(this.rightText=='编辑'){
 					//结算
 					console.log('结算',idArr);
+					this.$u.route({
+						url:'/pages/checkout/checkout',
+						params:{
+							ids:idArr.join(',')
+						}
+					})
 					
 				}
 				if(this.rightText == '完成'){

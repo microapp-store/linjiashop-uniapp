@@ -1,19 +1,28 @@
 <template>
 	<view class="wrap">
+		<u-radio-group>
 		<view class="item" v-for="(res, index) in addrList" :key="res.id">
-			<view class="top">
-				<view class="name">{{ res.name }}</view>
-				<view class="phone">{{ res.tel }}</view>
-				<view class="tag" v-if="res.isDefault">
-					<text   class="red">默认</text>
-				</view>
-			</view>
-			<view class="bottom">
-				{{res.wholeAddressInfo}}
-				<u-icon name="edit-pen" :size="40" color="#999999" @click="toEditAddr(res.id)"></u-icon>
-			</view>
+			<u-row>
+				<u-col :span="1" v-if="choose">
+						<u-radio @change="chgRadio(res.id)" :name="res.id"></u-radio>
+				</u-col>
+				<u-col :span="choose==true?11:12">
+					<view class="top">
+						<view class="name">{{ res.name }}</view>
+						<view class="phone">{{ res.tel }}</view>
+						<view class="tag" v-if="res.isDefault">
+							<text class="red">默认</text>
+						</view>
+					</view>
+					<view class="bottom">
+						{{res.wholeAddressInfo}}
+						<u-icon name="edit-pen" :size="40" color="#999999" @click="toEditAddr(res.id)"></u-icon>
+					</view>
+				</u-col>
+			</u-row>
 		</view>
-		<view class="addSite" @tap="toAddAddr">
+		</u-radio-group>
+		<view class="addSite" @tap="toAddAddr" v-if="!choose">
 			<view class="add">
 				<u-icon name="plus" color="#ffffff" class="icon" :size="30"></u-icon>新建收货地址
 			</view>
@@ -26,31 +35,48 @@
 		data() {
 			return {
 				siteList: [],
-				addrList:[]
+				addrList: [],
+				choose: false
 			};
+		},
+		onLoad(e) {
+			if (e.choose) {
+				this.choose = true;
+			}
 		},
 		onShow() {
 			this.init();
 		},
 		methods: {
-			init(){
-				this.$u.get('user/address/queryByUser').then( res => {
+			init() {
+				this.$u.get('user/address/queryByUser').then(res => {
 					this.addrList = res;
 				});
 			},
-			 
-			toEditAddr(id){
-				console.log('id',id);
+
+			toEditAddr(id) {
+				console.log('id', id);
 				this.$u.route({
-					url:'/pages/address/address',
-					params:{
-						id:id
+					url: '/pages/address/address',
+					params: {
+						id: id
 					}
 				})
 			},
 			toAddAddr() {
-				this.$u.route('/pages/address/address'); 
+				this.$u.route('/pages/address/address');
+			},
+			chgRadio(id){
+				console.log("id",id);
+				uni.setStorageSync('chooseAddrId', id);
+				this.$u.route({
+					type:'navigateBack',
+					delta:1
+				})
+				return true;
+				
 			}
+			
 		}
 	};
 </script>

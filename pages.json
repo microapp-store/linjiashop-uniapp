@@ -88,6 +88,11 @@
            "style": {
            	"navigationBarTitleText": "编辑收货地址"
            }
+        },{
+            "path" : "pages/checkout/checkout",
+           "style": {
+           	"navigationBarTitleText": "提交订单"
+           }
         },
 		// 演示-组件
 		{
@@ -133,6 +138,7 @@
 		}
 
 		
+        
     ],
 	"subPackages": [{
 			"root": "pages/componentsC",

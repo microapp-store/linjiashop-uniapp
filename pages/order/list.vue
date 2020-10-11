@@ -24,7 +24,7 @@
 									</view>
 									<view class="content">
 										<view class="title u-line-2">{{ item.goods.name }} </view>
-										<view class="type">{{ item.sku.codeName }}</view>
+										<view class="type">{{ item.title }}</view>
 										<view class="delivery-time">付款后5天内发货</view>
 									</view>
 									<view class="right">
@@ -71,7 +71,7 @@
 									</view>
 									<view class="content">
 										<view class="title u-line-2">{{ item.goods.name }} </view>
-										<view class="type">{{ item.sku.codeName }}</view>
+										<view class="type">{{ item.title }}</view>
 										<view class="delivery-time">付款后5天内发货</view>
 									</view>
 									<view class="right">
@@ -116,8 +116,8 @@
 										<image :src="imgUrl+item.goods.pic" mode="aspectFill"></image>
 									</view>
 									<view class="content">
-										<view class="title u-line-2">{{ item.goods.name }} </view>
-										<view class="type">{{ item.sku.codeName }}</view>
+									<view class="title u-line-2">{{ item.goods.name }} </view>
+									<view class="type">{{ item.title }}</view>
 										<view class="delivery-time">付款后5天内发货</view>
 									</view>
 									<view class="right">
@@ -163,8 +163,8 @@
 										<image :src="imgUrl+item.goods.pic" mode="aspectFill"></image>
 									</view>
 									<view class="content">
-										<view class="title u-line-2">{{ item.goods.name }} </view>
-										<view class="type">{{ item.sku.codeName }}</view>
+									<view class="title u-line-2">{{ item.goods.name }} </view>
+									<view class="type">{{ item.title }}</view>
 										<view class="delivery-time">付款后5天内发货</view>
 									</view>
 									<view class="right">
