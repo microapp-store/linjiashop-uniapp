@@ -40,6 +40,7 @@ const store = new Vuex.Store({
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_version: '1.0.1',
 		vuex_demo: '绛紫',
+		vuex_defAvatar:'http://microapp.gitee.io/linjiashop/logo.jpg',
 		// 自定义tabbar数据
 		vuex_tabbar: [{
 				iconPath: "/static/uview/example/component.png",

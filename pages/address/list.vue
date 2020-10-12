@@ -86,6 +86,7 @@
 		padding: 0rpx 30rpx;
 
 		.item {
+			width:100%;
 			padding: 40rpx 20rpx;
 
 			.top {

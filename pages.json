@@ -76,22 +76,48 @@
 				"navigationStyle": "custom", // 隐藏系统导航栏
 				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选
 			}
-		}
-	    ,{
-            "path" : "pages/address/list",
+		}, {
+			"path": "pages/address/list",
+			"style": {
+				"navigationBarTitleText": "收货地址"
+			}
+		}, {
+			"path": "pages/address/address",
+			"style": {
+				"navigationBarTitleText": "编辑收货地址"
+			}
+		}, {
+			"path": "pages/checkout/checkout",
+			"style": {
+				"navigationBarTitleText": "提交订单"
+			}
+		}, {
+			"path": "pages/setting/setting",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		},{
+            "path" : "pages/setting/updatePwd",
+            "style": {
+            	"navigationBarTitleText": "修改密码"
+            }
+        }
+        ,{
+            "path" : "pages/setting/updateMobile",
            "style": {
-           	"navigationBarTitleText": "收货地址"
+           	"navigationBarTitleText": "更换手机号"
            }
         }
         ,{
-            "path" : "pages/address/address",
+            "path" : "pages/setting/updateAvatar",
            "style": {
-           	"navigationBarTitleText": "编辑收货地址"
+           	"navigationBarTitleText": "设置头像"
            }
-        },{
-            "path" : "pages/checkout/checkout",
+        }
+        ,{
+            "path" : "pages/setting/about",
            "style": {
-           	"navigationBarTitleText": "提交订单"
+           	"navigationBarTitleText": "关于邻家小铺"
            }
         },
 		// 演示-组件
@@ -136,9 +162,11 @@
 				}
 			}
 		}
-
-		
-        
+	    
+        ,{
+            "path" : "pages/setting/document",
+            "style" : {}
+        }
     ],
 	"subPackages": [{
 			"root": "pages/componentsC",

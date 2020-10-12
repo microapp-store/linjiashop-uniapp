@@ -11,12 +11,12 @@
 				<view class="u-font-14 u-tips-color" v-if="vuex_user.nickName !== '未登录'">小铺ID:{{vuex_user.mobile}}</view>
 				<view class="u-font-14 u-tips-color" v-if="vuex_user.nickName == '未登录'" @click="toLogin">点击登录邻家小铺账号</view>
 			</view>
-			<view class="u-m-l-10 u-p-10">
+			<!-- <view class="u-m-l-10 u-p-10">
 				<u-icon name="scan" color="#969799" size="28"></u-icon>
-			</view>
-			<view class="u-m-l-10 u-p-10">
+			</view> -->
+			<!-- <view class="u-m-l-10 u-p-10">
 				<u-icon name="arrow-right" color="#969799" size="28"></u-icon>
-			</view>
+			</view> -->
 		</view>
 		
 		<view class="u-m-t-20">
@@ -36,10 +36,10 @@
 		
 		<view class="u-m-t-20">
 			<u-cell-group>
-				<u-cell-item icon="setting" title="设置"></u-cell-item>
-				<u-cell-item icon="list" title="组件" @click="openPage('/pages/example/components')"></u-cell-item>
+				<u-cell-item icon="setting" title="设置" @click="openPage('/pages/setting/setting')"></u-cell-item>
+				<!-- <u-cell-item icon="list" title="组件" @click="openPage('/pages/example/components')"></u-cell-item>
 				<u-cell-item icon="setting" title="工具" @click="openPage('/pages/example/js')"></u-cell-item>
-				<u-cell-item icon="grid-fill" title="模板" @click="openPage('/pages/example/template')"></u-cell-item>
+				<u-cell-item icon="grid-fill" title="模板" @click="openPage('/pages/example/template')"></u-cell-item> -->
 			</u-cell-group>
 		</view>
 	 
@@ -50,9 +50,12 @@
 	export default {
 		data() {
 			return {
-				pic:'https://uviewui.com/common/logo.png',
+				pic:'',
 				show:true
 			}
+		},
+		onLoad(){
+			this.pic = this.vuex_defAvatar;
 		},
 		methods: {
 			openPage(url){

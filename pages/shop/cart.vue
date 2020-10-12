@@ -2,13 +2,13 @@
 	<view class="wrap">
 		<u-navbar :custom-back="back" title="购物车">
 
-			<view class="navbar-right" slot="right">
+			<view class="navbar-right" slot="right" v-if="isLogin">
 				<view class="link-text" @click="onClickRight">
 					{{rightText}}
 				</view>
 			</view>
 		</u-navbar>
-		<view class="list">
+		<view class="list" v-if="isLogin">
 			<view class="item" v-for="(item,index) in cartList" :key="index">
 				<u-row gutter="16">
 					<u-col :span="1">
@@ -50,7 +50,7 @@
 			<u-button type="primary" shape="circle" @click="toLogin">立即登录</u-button>
 		</view>
 		
-		<view class="navigation"  >
+		<view class="navigation"  v-if="isLogin">
 			<view class="left">
 				<view class="item">
 					<u-checkbox @change="checkAll" v-model="checkedAll" shape="circle">全选</u-checkbox>
