@@ -15,7 +15,7 @@ export default {
 		template: 'Template'
 	},
 	common: {
-		intro: 'UI framework for rapid development of multiple platforms',
-		title: 'uView UI',
+		intro: '轻量简洁的商城系统',
+		title: '邻家小铺',
 	},
 }

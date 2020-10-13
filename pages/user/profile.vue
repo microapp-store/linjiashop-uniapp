@@ -37,6 +37,10 @@
 		<view class="u-m-t-20">
 			<u-cell-group>
 				<u-cell-item icon="setting" title="设置" @click="openPage('/pages/setting/setting')"></u-cell-item>
+				<!-- #ifdef H5 -->
+				<u-cell-item icon="setting" title="下载APP" @click="openPage('/pages/setting/app')"></u-cell-item>
+				<!-- #endif -->
+					
 				<!-- <u-cell-item icon="list" title="组件" @click="openPage('/pages/example/components')"></u-cell-item>
 				<u-cell-item icon="setting" title="工具" @click="openPage('/pages/example/js')"></u-cell-item>
 				<u-cell-item icon="grid-fill" title="模板" @click="openPage('/pages/example/template')"></u-cell-item> -->

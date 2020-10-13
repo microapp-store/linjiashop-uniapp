@@ -124,6 +124,10 @@
             "path" : "pages/setting/document",
             "style" : {}
         }
+        ,{
+            "path" : "pages/setting/app",
+            "style" : {}
+        }
     ],
 	
 	"preloadRule": {
