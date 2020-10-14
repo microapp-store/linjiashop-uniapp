@@ -24,7 +24,7 @@
 
 			</u-cell-group>
 		</view>
-		<view class="bottom u-m-b-80">
+		<view class="u-m-t-20">
 			<u-button @click="logout">退出</u-button>
 		</view>
 	</view>
@@ -102,10 +102,14 @@
 	}
 </script>
 
+<style>
+page {
+	background-color: #ededed;
+}
+</style>
+
 <style lang="scss" scoped>
-	page {
-		background-color: #ededed;
-	}
+ 
 
 	.wrap {
 		.bottom {

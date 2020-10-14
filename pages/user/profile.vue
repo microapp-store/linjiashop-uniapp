@@ -1,7 +1,5 @@
-<template>
-	
-	<view class="wrap">
-		 
+<template>	
+	<view class="wrap">		 
 		<view class="u-flex user-box u-p-l-30 u-p-r-20 u-p-b-30">
 			<view class="u-m-r-10">
 				<u-avatar :src="pic" size="140"></u-avatar>
@@ -38,12 +36,8 @@
 			<u-cell-group>
 				<u-cell-item icon="setting" title="设置" @click="openPage('/pages/setting/setting')"></u-cell-item>
 				<!-- #ifdef H5 -->
-				<u-cell-item icon="setting" title="下载APP" @click="openPage('/pages/setting/app')"></u-cell-item>
+				<u-cell-item icon="download" title="下载APP" @click="openPage('/pages/setting/app')"></u-cell-item>
 				<!-- #endif -->
-					
-				<!-- <u-cell-item icon="list" title="组件" @click="openPage('/pages/example/components')"></u-cell-item>
-				<u-cell-item icon="setting" title="工具" @click="openPage('/pages/example/js')"></u-cell-item>
-				<u-cell-item icon="grid-fill" title="模板" @click="openPage('/pages/example/template')"></u-cell-item> -->
 			</u-cell-group>
 		</view>
 	 
@@ -76,12 +70,14 @@
 	}
 </script>
 
-
-<style lang="scss">
-page{
+<style>
+page {
 	background-color: #ededed;
 }
+</style>
 
+<style lang="scss" scoped>
+ 
 .camera{
 	width: 54px;
 	height: 44px;
