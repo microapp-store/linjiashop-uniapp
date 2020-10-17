@@ -12,7 +12,7 @@ try {
 }
 
 // 需要永久存储，且下次APP启动需要取出的，在state中的变量名
-let saveStateKeys = ['vuex_user', 'vuex_token','vuex_navlist'];
+let saveStateKeys = ['vuex_user', 'vuex_token','vuex_navlist','vuex_avatar'];
 
 // 保存变量到本地存储中
 const saveLifeData = function(key, value) {
@@ -40,7 +40,7 @@ const store = new Vuex.Store({
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_version: '1.0.1',
 		vuex_demo: '绛紫',
-		vuex_defAvatar:'http://microapp.gitee.io/linjiashop/logo.jpg',
+		vuex_avatar: lifeData.vuex_avatar ? lifeData.vuex_avatar : 'http://microapp.gitee.io/linjiashop/logo.jpg',
 		// 自定义tabbar数据
 		vuex_tabbar: [{
 				iconPath: "/static/uview/example/component.png",

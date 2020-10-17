@@ -64,6 +64,11 @@
 				this.$u.post('loginOrReg?mobile=' + this.mobile + '&smsCode=' + value).then(res => {
 					this.$u.vuex('vuex_token', res.token);
 					this.$u.vuex('vuex_user', res.user);
+					console.log('user',res.user)
+					if(res.user.avatar && res.user.avatar !== ''){
+						console.log('avatar',this.baseApi+'/file/getImgStream?idFile='+res.user.avatar);
+						this.$u.vuex('vuex_avatar',	this.baseApi+'/file/getImgStream?idFile='+res.user.avatar);
+					}
 					this.$u.route({
 						type: 'switchTab',
 						url: '/pages/user/profile'

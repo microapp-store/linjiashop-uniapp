@@ -52,8 +52,8 @@
 				show:true
 			}
 		},
-		onLoad(){
-			this.pic = this.vuex_defAvatar;
+		onShow(){
+			this.pic = this.vuex_avatar;
 		},
 		methods: {
 			openPage(url){
