@@ -1,9 +1,9 @@
 // 这里的vm，就是我们在vue文件里面的this，所以我们能在这里获取vuex的变量，比如存放在里面的token
 // 同时，我们也可以在此使用getApp().globalData，如果你把token放在getApp().globalData的话，也是可以使用的
+import config from "./config"
 const install = (Vue, vm) => {
 	Vue.prototype.$u.http.setConfig({
-		baseUrl: 'http://linjiashop.microapp.store/prod-api',
-		// baseUrl:'http://localhost:8081',
+		baseUrl: config.baseApi,
 		showLoading: true, // 是否显示请求中的loading
 		loadingText: '请求中...', // 请求loading中的文字提示
 		loadingTime: 1000, // 在此时间内，请求还没回来的话，就显示加载中动画，单位ms
