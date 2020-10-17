@@ -25,7 +25,7 @@
 								<u-col :span="6">
 										￥{{formatPrice(item.goods.price)}}
 								</u-col>
-								<u-col :span="6">
+								<u-col :span="6" v-if="rightText=='编辑'">
 									<u-number-box v-model="item.count" :min="1" :max="item.goods.stock"  ></u-number-box>
 								</u-col>
 							</u-row>							
@@ -35,6 +35,7 @@
 				</u-row>
 			</view>
 		</view>
+		<view v-if="inited">
 		<view class="no-data" v-if="isLogin && cartList.length ===0 ">
 			<view class="content">
 				<u-icon name="shopping-cart" size="80" /><br>
@@ -49,19 +50,22 @@
 			</view>
 			<u-button type="primary" shape="circle" @click="toLogin">立即登录</u-button>
 		</view>
+		</view>
 		
-		<view class="navigation"  v-if="isLogin">
+		<view class="navigation"  v-if="isLogin &&cartList.length>0">
 			<view class="left">
 				<view class="item">
 					<u-checkbox @change="checkAll" v-model="checkedAll" shape="circle">全选</u-checkbox>
 				</view>
-				<view class="item total-price">
+				<view class="item total-price" v-if="rightText=='编辑'">
 					合计: ￥{{formatPrice(totalPrice)}}
 				</view>
+				 
 		
 			</view>
 			<view class="right">
-				<u-button type="error" shape="circle"   @click="submit" >{{rightText=='编辑'?'结算':'删除'}}</u-button>
+				<u-button type="warning"   v-if="rightText =='完成'"  @click="addFav" style="margin-right:2rpx;">移入收藏</u-button>
+				<u-button type="error"    @click="submit" >{{rightText=='编辑'?'结算':'删除'}}</u-button>
 			</view>
 		</view>
 		
@@ -72,6 +76,7 @@
 	export default {
 		data() {
 			return {
+				inited:false,
 				isLogin: false,
 				activeFooter: 2,
 				checkedCartItem: [], //当前选中的购物车项目id
@@ -90,6 +95,7 @@
 		},
 		onShow() {
 			this.init();
+			this.rightText='编辑';
 		},
 		methods: {
 			init() {
@@ -108,7 +114,10 @@
 
 						this.allCartItem = this.checkedCartItem
 						this.cartList = cartList
+						this.inited = true;
 					})
+				}else{
+					this.inited=true;
 				}
 			},
 			toHome() {
@@ -160,6 +169,36 @@
 					}
 				}
 				this.checkedAll = !this.checkedAll; 
+			},
+			 
+			addFav(){
+				let idArr = new Array();
+				let idGoods = new Array();
+				for(const i in this.cartList){
+					if(this.cartList[i].checked){
+						idGoods.push(this.cartList[i].goods.id);
+						idArr.push(this.cartList[i].id);
+					}
+				}
+				if(idArr.length == 0 ){
+					this.$u.toast('请选择收藏的商品');
+					return ;
+				}
+				let count = 0;
+				for(var index in idGoods){
+					
+					this.$u.post('user/favorite/add/'+idGoods[index]).then( res => {
+						count++;
+						if(count == idGoods.length){
+							console.log('====================') 
+							this.$u.delete('user/cart',idArr).then( res2 => {
+								this.$u.toast('收藏成功');
+								this.init();
+							}); 
+						}
+					});
+				}
+				 
 			},
 			submit(){
 				let idArr = new Array();
@@ -249,7 +288,7 @@
 			.left {
 				display: flex;
 				font-size: 20rpx;
-		
+				align-items: center;
 				.item {
 					margin: 0 8rpx; 
 				}
