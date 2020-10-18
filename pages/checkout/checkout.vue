@@ -91,7 +91,7 @@
 				this.$u.get(url).then(res => {
 					let addr = res.addr;
 					if (!this.addr || !this.addr.name) {
-						this.addr.name='请选择收获地址';
+						this.addr.name = '请选择收获地址';
 					} else {
 						this.addr = res.addr;
 					}
@@ -110,7 +110,7 @@
 				this.$u.route({
 					url: '/pages/address/list',
 					params: {
-						choose: true
+						choose: truesweefghgyjhgggggggghhgggghtyc
 					}
 				})
 			},
@@ -119,6 +119,28 @@
 					this.$u.toast('请选择收货地址');
 					return;
 				}
+				// user/order/save?idAddress=1&message=&idCarts=37,38
+				let idCarts = '';
+				for (var i in this.cartList) {
+					idCarts += this.cartList[i].id + ',';
+				}
+				const params = {
+					idAddress: this.chooseAddrId,
+					idCarts: idCarts
+				}
+				console.log('params', params); 
+
+				this.$u.post('user/order/save?idAddress='+this.chooseAddrId+'&idCarts='+idCarts).then(res => {
+					const order = res;
+					this.$u.route({
+						url: '/pages/order/payment/payment',
+						params: {
+							orderSn: order.orderSn,
+							totalPrice: order.totalPrice
+						}
+					})
+				});
+
 			}
 		}
 	}
@@ -127,7 +149,7 @@
 <style lang="scss" scoped>
 	.wrap {
 		padding: 0rpx 20rpx;
-	
+
 		.list {
 			.item {
 				margin-top: 20rpx;
@@ -148,6 +170,7 @@
 				}
 			}
 		}
+
 		.navigation {
 			width: 100%;
 			display: flex;
@@ -170,7 +193,7 @@
 				.total-price {
 					font-size: 30rpx;
 					color: red;
-					padding-top:20rpx;
+					padding-top: 20rpx;
 				}
 			}
 

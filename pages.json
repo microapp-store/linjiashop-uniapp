@@ -128,6 +128,12 @@
             "path" : "pages/setting/app",
             "style" : {}
         }
+        ,{
+            "path" : "pages/order/payment/payment",
+            "style" : {
+				"navigationBarTitleText":"收银台"
+			}
+        }
     ],
 	
 	"preloadRule": {
