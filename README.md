@@ -31,7 +31,7 @@ linjiashop-uniapp，是[邻家小铺](http://microapp.gitee.io/linjiashop/)的un
 您可以通过**微信**扫码，查看最佳的演示效果。
 <br>
 <br>
-<img src="https://uviewui.com/common/weixin_mini_qrcode.png" width="220" height="220" >
+<img src="https://gitee.com/microapp/linjiashop/raw/master/doc/img/online/wt1hd.jpg" width="220" height="220" >
 
 
 ## 友情链接
@@ -48,80 +48,15 @@ linjiashop-uniapp，是[邻家小铺](http://microapp.gitee.io/linjiashop/)的un
 ## 链接
 
 - [官方文档](http://microapp.gitee.io/linjiashop/)
-- [更新日志](https://uviewui.com/components/changelog.html)
-- [升级指南](https://uviewui.com/components/changelog.html)
-- [关于我们](https://uviewui.com/cooperation/about.html)
-
-## 交流反馈
-
-欢迎加入QQ群交流反馈：[254059156](http://qm.qq.com/cgi-bin/qm/qr?k=EEHjlB4XyM-Kh2eMCbRPRoT38-V3au0T&authKey=NE856fZKPJLjtJTwOA1MlWWtcATVwT4e3zhjCOHeye8am2posApW%2Fw%3D%3D&group_code=254059156)
-
+ 
 ## 安装
 
-#### **下载地址** —— [https://ext.dcloud.net.cn/plugin?id=1593](https://ext.dcloud.net.cn/plugin?id=1593)
+#### **下载地址** —— [http://fir.microapp.store/linjiashop](http://fir.microapp.store/linjiashop)
 
 ## 快速上手
 
-1. `main.js`引入uView库
-```js
-// main.js
-import uView from 'uview-ui';
-Vue.use(uView);
-```
-
-2. `App.vue`引入基础样式(注意style标签需声明scss属性支持)
-```css
-/* App.vue */
-<style lang="scss">
-@import "uview-ui/index.scss";
-</style>
-```
-
-3. `uni.scss`引入全局scss变量文件
-```css
-/* uni.scss */
-@import "uview-ui/theme.scss";
-```
-
-4. `pages.json`配置easycom规则(按需引入)
-
-```js
-// pages.json
-{
-	"easycom": {
-		// 下载安装的方式需要前面的"@/"，npm安装的方式无需"@/"
-		// 下载安装方式
-		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
-		// npm安装方式
-		// "^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
-	},
-	// 此为本身已有的内容
-	"pages": [
-		// ......
-	]
-}
-```
-
-请通过[快速上手](https://uviewui.com/components/quickstart.html)了解更详细的内容
-
-## 使用方法
-配置easycom规则后，自动按需引入，无需`import`组件，直接引用即可。
-
-```html
-<template>
-	<u-button>按钮</u-button>
-</template>
-```
-
-请通过[快速上手](https://uviewui.com/components/quickstart.html)了解更详细的内容
-
-
-## 捐赠uView的研发
-
-uView文档和源码全部开源免费，如果您认为uView帮到了您的开发工作，您可以捐赠uView的研发工作，捐赠无门槛，哪怕是一杯可乐也好(相信这比打赏主播更有意义)。
-
-<img src="https://uviewui.com/common/wechat.png" width="220" >
-<img style="margin-left: 100px;" src="https://uviewui.com/common/alipay.png" width="220" >
-
+- 克隆本项目，使用HBuilderX开发即可
+- 本项目使用uView组件开发，开发过程可以参考uView[官方文档](https://www.uviewui.com/) 
+ 
 ## 版权信息
-uView遵循[MIT](https://en.wikipedia.org/wiki/MIT_License)开源协议，意味着您无需支付任何费用，也无需授权，即可将uView应用到您的产品中。
+本项目遵循[MIT](https://en.wikipedia.org/wiki/MIT_License)开源协议，意味着您无需支付任何费用，也无需授权，即可将linjiashop-uniapp应用到您的产品中。
