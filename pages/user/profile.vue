@@ -27,8 +27,8 @@
 			<u-cell-group>
 				<u-cell-item icon="map" title="收货地址" @click="openPage('/pages/address/list')"></u-cell-item>
 				<u-cell-item icon="star" @click="openPage('/pages/favorite/favorite')" title="喜欢的商品"></u-cell-item>
-				<u-cell-item icon="integral" title="我的积分"></u-cell-item>
-				<u-cell-item icon="coupon" title="我的优惠券"></u-cell-item>
+				<u-cell-item icon="integral" @click="todo" title="我的积分"></u-cell-item>
+				<u-cell-item icon="coupon" @click="todo" title="我的优惠券"></u-cell-item>
 			</u-cell-group>
 		</view>
 		
@@ -65,6 +65,9 @@
 				this.$u.route({
 					url: '/pages/login/login'
 				})
+			},
+			todo(){
+				this.$u.toast('开发中');
 			}
 		}
 	}
