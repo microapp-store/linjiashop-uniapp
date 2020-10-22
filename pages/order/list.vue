@@ -200,13 +200,7 @@
 <script>
 	export default {
 		data() {
-			return {
-				orderList: [
-					[],
-					[],
-					[],
-					[]
-				],
+			return {			 
 				imgUrl: this.baseApi + '/file/getImgStream?idFile=',
 				orders: [
 					[],
@@ -270,18 +264,16 @@
 		},
 		methods: {
 			reachBottom() {
-				console.log("到底了",this.current);
-				// 此tab为空数据 
 				const current = this.current;
-				if(this.loadStatus[current]=='nomore'){
+				if (this.loadStatus[current] == 'nomore') {
 					return;
 				}
-				this.getOrders(current+1);
+				this.getOrders(current + 1);
 			},
 			getOrders(status) {
 				const page = this.listQuery.page;
 				const limit = this.listQuery.limit;
-					this.loadStatus.splice(status - 1, 1, "loading");
+				this.loadStatus.splice(status - 1, 1, "loading");
 				this.$u.get('user/order/getOrders?page=' + page + '&limit=' + limit + '&status=' + status).then(res => {
 					let orderList = res.records;
 					for (let index in orderList) {
@@ -291,7 +283,6 @@
 						this.orders[status - 1].push(order);
 					}
 					if (orderList.length < limit) {
-						console.log('没有更多', status);
 						this.loadStatus.splice(status - 1, 1, "nomore");
 						console.log(this.loadStatus);
 					}
