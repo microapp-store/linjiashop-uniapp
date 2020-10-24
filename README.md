@@ -9,8 +9,8 @@
 
 [![uView](https://img.shields.io/badge/uView-1.7.3-brightgreen)](https://www.uviewui.com/)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/enilu/linjiashop/blob/master/LICENSE)
-[![Gitee stars](https://gitee.com/microapp/linjiashop/badge/star.svg?theme=social)](https://gitee.com/microapp/linjiashop-uniapp)
-[![GitHub stars](https://img.shields.io/github/stars/microapp-store/linjiashop.svg?style=social&label=Stars)](https://github.com/microapp-store/linjiashop-uniapp)
+[![Gitee stars](https://gitee.com/microapp/linjiashop-uniapp/badge/star.svg?theme=social)](https://gitee.com/microapp/linjiashop-uniapp)
+[![GitHub stars](https://img.shields.io/github/stars/microapp-store/linjiashop-uniapp.svg?style=social&label=Stars)](https://github.com/microapp-store/linjiashop-uniapp)
 
  
 - linjiashop-uniapp，是[邻家小铺](http://microapp.gitee.io/linjiashop/)的uniapp版本，通过uniapp技术达到一套代码覆盖全平台(H5,Android,IOS,微信小程序，其他如支付宝，qq，头条小程序也可以通过简单的适配实现)的目的
