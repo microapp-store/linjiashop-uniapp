@@ -18,7 +18,7 @@
 						<u-image width="100%" height="150rpx" :src="item.thumb"></u-image>
 					</u-col>
 					<u-col :span="8" @click="toGoods(item.goods.id)">
-						<view class="gl-name">{{item.goods.name}}</view>
+						<view class="gl-name">{{item.title}}</view>
 						<view class="gl-descript">{{item.goods.descript}}</view>
 						<view class="gl-price">
 							<u-row>
