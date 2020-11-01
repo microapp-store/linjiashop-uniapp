@@ -38,7 +38,6 @@
 		},
 		onLoad(option) {
 			this.activeNav = option.itemId;
-			console.log("index", this.activeNav);
 			this.init();
 		},
 		methods: {
@@ -53,14 +52,12 @@
 				if (navList.length == 0) {
 					let ret = await this.$u.get('category/list');
 					navList = ret;
-					console.log("response", navList);
 					navList.splice(0, 0, {
 						name: '推荐',
 						id: '0'
 					})
 					this.$u.vuex('vuex_navlist', navList);
 				}
-				console.log('navList', navList);
 				for (const i in navList) {
 					if (navList[i].id == categoryIndex) {
 						bannerList = navList[i].bannerList

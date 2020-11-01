@@ -1,6 +1,6 @@
 <template>
 	<view class="wrap">
-		<u-navbar :custom-back="back" title="购物车">
+		<u-navbar :is-back="false" title="购物车">
 
 			<view class="navbar-right" slot="right" v-if="isLogin">
 				<view class="link-text" @click="onClickRight">
@@ -190,7 +190,6 @@
 					this.$u.post('user/favorite/add/'+idGoods[index]).then( res => {
 						count++;
 						if(count == idGoods.length){
-							console.log('====================') 
 							this.$u.delete('user/cart',idArr).then( res2 => {
 								this.$u.toast('收藏成功');
 								this.init();

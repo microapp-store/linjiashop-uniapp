@@ -110,7 +110,7 @@
 				this.$u.route({
 					url: '/pages/address/list',
 					params: {
-						choose: truesweefghgyjhgggggggghhgggghtyc
+						choose: true
 					}
 				})
 			},

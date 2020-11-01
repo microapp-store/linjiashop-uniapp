@@ -44,12 +44,13 @@
 							<u-image width="170rpx" height="170rpx" :src="goods.picture"></u-image>
 						</u-col>
 						<u-col :span="8" class="right">
-							<view class="price">{{formatPrice(goods.price)}}</view>
-							<view class="stock">剩余<text class="stock_num">{{goods.stock}}</text>件</view>
+							<view class="price">{{formatPrice(price)}}</view>
+							<view class="stock">剩余<text class="stock_num">{{stock}}</text>件</view>
 							<template v-if="!sku.none_sku">
-								<view class="tips">请选择
+								<view class="tips">{hasSel?'已选择':'请选择'}}
 									<text v-for="(item,index) in sku.tree" :key="index" style="padding-left:10rpx;">
-										{{item.k}}
+
+										{{item.sel?item.v[parseInt(item.sel)].name:item.k}}
 									</text>
 								</view>
 							</template>
@@ -58,14 +59,13 @@
 				</view>
 				<template v-if="!sku.none_sku">
 					<view class="sku-list">
-						<block v-for="(item,index) in sku.tree" :key="index">
+						<block v-for="(category,index) in sku.tree" :key="index">
 							<view class="tree">
-								<view class="title">{{item.k}}</view>
+								<view class="title">{{category.k}}</view>
 							</view>
 							<view class="node-list">
-
-								<u-tag class="node" type="warning" v-for="(node,index2) in item.v" :key="index2" :text="node.name" :mode="sku.skuData[item.k_s] && sku.skuData[item.k_s].idAttr==node.id?'dark':'light'"
-								 @click="selSku(item,node)" />
+								<u-tag class="node" :type="node.mode=='disable'?'info':'warning'" v-for="(node,index2) in category.v" :key="index2"
+								 :text="node.name" :mode="node.mode=='default'?'light':(node.mode=='select'?'dark':'light')" @click="selSku(category,node)" />
 
 
 							</view>
@@ -77,7 +77,7 @@
 				<view class="count u-flex u-row-between">
 					<view>购买数量</view>
 					<view>
-						<u-number-box v-model="count" :max="goods.stock"></u-number-box>
+						<u-number-box v-model="count" :max="stock"></u-number-box>
 					</view>
 				</view>
 				<view class="action">
@@ -97,6 +97,9 @@
 				likeColor: 'black',
 				cartCount: '',
 				showSku: false,
+				stock: '',
+				price: '',
+				hasSel:false,
 				sku: {
 					tree: [],
 
@@ -105,10 +108,8 @@
 					stock_num: 20, // 商品总库存
 					collection_id: 0, // 无规格商品 skuId 取 collection_id，否则取所选 sku 组合对应的 id
 					none_sku: false, // 是否无规格商品
-					hide_stock: false, // 是否隐藏剩余库存
-					skuData: {
-						count: 1
-					}
+					hide_stock: false, // 是否隐藏剩余库存					
+					sel: {}
 				},
 				count: 1,
 				offline: false,
@@ -137,14 +138,18 @@
 					sku.price = (sku.price / 100).toFixed(2)
 
 					if (!sku.none_sku) {
-						sku.skuData = {};
+
 						for (var i in sku.tree) {
-							sku.skuData[sku.tree[i].k_s] = {};
-							sku.skuData[sku.tree[i].k_s].idAttr = sku.tree[i].v[0].id;
+							for (var m in sku.tree[i].v) {
+								sku.tree[i].v[m].mode = 'default';
+
+							}
 						}
 					}
 					console.log('sku', sku);
 					this.sku = sku;
+					this.stock = goods.stock;
+					this.price = goods.price;
 					goods.thumb = new Array()
 					goods.picture = baseApi + '/file/getImgStream?idFile=' + goods.pic
 					const gallery = goods.gallery.split(',')
@@ -154,7 +159,6 @@
 					this.goods = goods
 				});
 				const user = this.vuex_user;
-				console.log('user', user);
 				if (user.mobile) {
 					this.$u.get('user/cart/count').then(res => {
 						this.cartCount = res === 0 ? '' : res
@@ -180,8 +184,8 @@
 					url: '/pages/shop/cart'
 				})
 			},
-			formatPrice() {
-				return '¥' + (this.goods.price / 100).toFixed(2)
+			formatPrice(price) {
+				return '¥' + (price / 100).toFixed(2)
 			},
 			like() {
 				if (this.ifLike === false) {
@@ -201,26 +205,19 @@
 			},
 			showSkuPop(type) {
 				this.actionType = type;
-				console.log('actionType',this.actionType);
+				console.log('actionType', this.actionType);
 				this.showSku = true;
 			},
 			buy() {
-				let idSku = '';
-				for (const i in this.sku.list) {
-					const item = this.sku.list[i];
-					let checkRet = true;
-					for (const key in this.sku.skuData) {
-						if (item[key] !== this.sku.skuData[key].idAttr) {
-							checkRet = false;
-							break;
-						}
-					}
-					if (checkRet) {
-						idSku = item.id;
-						break;
+				const idSku = '';
+				if (!this.sku.none_sku) {
+					const idSku = this.sku.sel.id;
+					console.log('idSku',idSku);
+					if(!idSku){
+						this.$u.toast('请选择商品规格')
+						return ;
 					}
 				}
-				console.log('用户选中的sku', idSku);
 				const params = {
 					idGoods: this.goods.id,
 					count: this.count,
@@ -244,11 +241,91 @@
 
 
 			},
-			selSku(categoryData, skuData) {
-				console.log(categoryData);
-				console.log(skuData);
-				this.sku.skuData[categoryData.k_s].idAttr = skuData.id;
-				console.log(this.sku.skuData);
+			//todo 商品规格选择算法待优化
+			selSku(category, node) {
+				if (node.mode == 'disable') {
+					return;
+				}
+				this.hasSel = true;
+				let selItem = {};
+				const skuDataId = node.id;
+				const categoryks = category.k_s;
+				let sku = this.sku;
+				let skuTree = sku.tree;
+				let list = sku.list;
+				let anotherArr = new Array();
+				//提取当前选择的所有组合选项。
+				for (const i in list) {
+					const item = list[i];
+					if (item[categoryks] == skuDataId) {
+						anotherArr.push(item);
+					}
+				}
+
+				for (const i in skuTree) {
+					const ks = skuTree[i].k_s;
+					for (const j in skuTree[i].v) {
+						const id = skuTree[i].v[j].id;
+						if (categoryks == ks) {
+							//统一类规格中，设置当前选项为select，其他选项为default
+							if (skuDataId == id) {
+								skuTree[i].v[j].mode = 'select';
+								skuTree[i].sel = j
+								selItem[ks] = skuTree[i].v[j].id;
+							} else {
+								skuTree[i].v[j].mode = 'default';
+							}
+						} else {
+
+							let disable = true;
+							for (const m in anotherArr) {
+								if (anotherArr[m][ks] == id) {
+									disable = false;
+								}
+							}
+							if (disable) {
+								skuTree[i].v[j].mode = 'disable';
+							} else {
+								if (skuTree[i].v[j].mode !== 'select') {
+									skuTree[i].v[j].mode = 'default';
+								} else {
+									skuTree[i].sel = j
+									selItem[ks] = skuTree[i].v[j].id;
+								}
+							}
+						}
+
+					}
+				}
+				this.sku = {};
+				sku.tree = skuTree;
+				this.sku = sku;
+ 
+				let skuSelItem;
+				for (const i in list) {
+					const item = list[i];
+					let sel = true;
+					for (const j in skuTree) {
+						const key = skuTree[j].k_s;
+						if (selItem[key] !== item[key]) {
+							sel = false;
+							break;
+						}
+					}
+					if (sel) {
+						skuSelItem = item;
+						break;
+					}
+				}
+
+				if (skuSelItem) {
+					this.stock = skuSelItem.stock_num;
+					this.price = skuSelItem.price;
+					this.sku.sel = skuSelItem;
+				}else{
+					this.sku.sel = {};
+				}
+				console.log('sku', this.sku)
 			}
 		}
 	}

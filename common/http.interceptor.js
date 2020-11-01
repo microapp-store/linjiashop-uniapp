@@ -23,7 +23,6 @@ const install = (Vue, vm) => {
 		// config.header.Token = 'xxxxxx';
 
 		// 方式一，存放在vuex的token，假设使用了uView封装的vuex方式，见：https://uviewui.com/components/globalVariable.html
-		console.log('vm',vm);
 		config.header.Authorization = vm.vuex_token;
 
 		// 方式二，如果没有使用uView封装的vuex方法，那么需要使用$store.state获取
@@ -40,6 +39,7 @@ const install = (Vue, vm) => {
 	}
 	// 响应拦截，判断状态码是否通过
 	Vue.prototype.$u.http.interceptor.response = (res) => {
+		console.log('response',res);
 		// 如果把originalData设置为了true，这里得到将会是服务器返回的所有的原始数据
 		// 判断可能变成了res.statueCode，或者res.data.code之类的，请打印查看结果
 		if (res.code == 20000) {

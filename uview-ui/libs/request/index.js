@@ -53,11 +53,12 @@ class Request {
 					if (response.statusCode == 200) {
 						if (this.interceptor.response && typeof this.interceptor.response === 'function') {
 							let resInterceptors = this.interceptor.response(response.data);
-							if (resInterceptors !== false) {
-								resolve(resInterceptors);
-							} else {
-								reject(response.data);
-							}
+							resolve(resInterceptors);
+							// if (resInterceptors !== false) {
+							// 	resolve(resInterceptors);
+							// } else {
+							// 	reject(response.data);
+							// }
 						} else {
 							// 如果不是返回原始数据(originalData=false)，且没有拦截器的情况下，返回纯数据给then回调
 							resolve(response.data);
