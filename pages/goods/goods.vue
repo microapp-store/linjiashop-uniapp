@@ -47,7 +47,7 @@
 							<view class="price">{{formatPrice(price)}}</view>
 							<view class="stock">剩余<text class="stock_num">{{stock}}</text>件</view>
 							<template v-if="!sku.none_sku">
-								<view class="tips">{hasSel?'已选择':'请选择'}}
+								<view class="tips">{{hasSel?'已选择':'请选择'}}
 									<text v-for="(item,index) in sku.tree" :key="index" style="padding-left:10rpx;">
 
 										{{item.sel?item.v[parseInt(item.sel)].name:item.k}}
