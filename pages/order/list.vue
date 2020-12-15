@@ -45,8 +45,8 @@
 									<view class="more">
 										<u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon>
 									</view>
-									<view class="logistics btn">取消订单</view>
-									<view class="evaluate btn">立即付款</view>
+									<view class="logistics btn" @click="cancel(res.orderSn)">取消订单</view>
+									<view class="evaluate btn" @click="pay(res.orderSn,totalPrice(res.items)*100)">立即付款</view>
 								</view>
 							</view>
 							<u-loadmore :status="loadStatus[0]" bgColor="#f2f2f2"></u-loadmore>
@@ -273,6 +273,7 @@
 			getOrders(status) {
 				const page = this.listQuery.page;
 				const limit = this.listQuery.limit;
+				this.orders[status - 1] = new Array();
 				this.loadStatus.splice(status - 1, 1, "loading");
 				this.$u.get('user/order/getOrders?page=' + page + '&limit=' + limit + '&status=' + status).then(res => {
 					let orderList = res.records;
@@ -284,7 +285,6 @@
 					}
 					if (orderList.length < limit) {
 						this.loadStatus.splice(status - 1, 1, "nomore");
-						console.log(this.loadStatus);
 					}
 
 				});
@@ -348,6 +348,22 @@
 					url: '/pages/goods/goods',
 					params: {
 						id: id
+					}
+				})
+			},
+			cancel(orderNo){
+				console.log("orderNo",orderNo);
+				this.$u.post('user/order/cancel/'+orderNo).then( res => {
+					this.getOrders(1);
+				});
+			},
+			pay(orderNo,totalPrice){
+				console.log("pay",orderNo);
+				this.$u.route({
+					url: '/pages/order/payment/payment',
+					params: {
+						orderSn: orderNo,
+						totalPrice: totalPrice
 					}
 				})
 			}
