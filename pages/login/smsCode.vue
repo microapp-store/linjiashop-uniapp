@@ -2,7 +2,7 @@
 	<view class="wrap">
 		<view class="key-input">
 			<view class="title">输入验证码</view>
-			<view class="tips">验证码已发送至 +150****9320</view>
+			<view class="tips">验证码已发送至 {{maskMobile}}</view>
 			<u-message-input :focus="true" :value="value" @change="change" @finish="finish" mode="bottomLine" :maxlength="maxlength"></u-message-input>
 			<text :class="{ error: error }">验证码错误，请重新输入</text>
 			<!-- <view class="captcha">
@@ -14,10 +14,12 @@
 </template>
 
 <script>
+	import util from "@/common/util"
 	export default {
 		data() {
 			return {
 				mobile: '',
+				maskMobile:'',
 				maxlength: 4,
 				value: '',
 				second: 3,
@@ -27,10 +29,9 @@
 		},
 		computed: {},
 		onLoad(option) {
-			console.log("option", option)
-			this.mobile = option.mobile;
+			this.mobile = option.mobile
+			this.maskMobile = util.maskMobile(this.mobile)
 			const res = option.result;
-
 			if (res != true) {
 				this.$u.toast('测试环境请输入短信验证码：' + res, 3000);
 			}

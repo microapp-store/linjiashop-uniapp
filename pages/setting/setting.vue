@@ -11,7 +11,7 @@
 		</view>
 		<view class="u-m-t-20">
 			<u-cell-group>
-				<u-cell-item icon="lock" title="修改密码" @click="todo('/pages/setting/updatePwd')"></u-cell-item>
+				<u-cell-item icon="lock" title="修改密码" @click="openPage('/pages/setting/updatePwd')"></u-cell-item>
 				<u-cell-item icon="phone" title="更换手机" @click="todo('/pages/setting/updateMobile')" :value="user.mobile"></u-cell-item>
 
 			</u-cell-group>
