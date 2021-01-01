@@ -146,7 +146,6 @@
 							}
 						}
 					}
-					console.log('sku', sku);
 					this.sku = sku;
 					this.stock = goods.stock;
 					this.price = goods.price;

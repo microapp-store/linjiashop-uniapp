@@ -3,7 +3,7 @@
 		<view class="top"></view>
 		<view class="content">
 			<view class="title">欢迎登录邻家小铺</view>
-			<input class="u-border-bottom" type="number" v-model="tel" placeholder="输入测试账号:1501111222体验更多功能" />
+			<input class="u-border-bottom" type="number" v-model="tel" placeholder="测试账号:1501111222" />
 			<view class="tips">未注册的手机号验证后自动创建邻家小铺账号</view>
 			<button @tap="submit" :style="[inputStyle]" class="getSmsCode">获取短信验证码</button>
 			<view class="alternative">
@@ -60,18 +60,15 @@
 					this.$u.toast('请输入正确手机号');
 					return;
 				}
-				this.$u.post('sendSmsCode?mobile='+this.tel).then(res => {					
+				this.$u.post('sendSmsCode?mobile='+this.tel).then(response => {		
 					this.$u.route({
 						url: '/pages/login/smsCode',
 						params:{
 							mobile:this.tel,
-							result:res
+							result:response
 						}
 					})
-				}).catch( res => {
-					console.log("err",res);
-					this.$u.toast( res.data.message);
-				})
+				}) 
 			},
 			loginBy(type){
 				this.$u.toast('第三方账号登录开发中，敬请期待')
@@ -108,8 +105,9 @@
 
 			.tips {
 				color: $u-type-info;
+				font-size:20rpx;
 				margin-bottom: 60rpx;
-				margin-top: 8rpx;
+				margin-top: 30rpx;
 			}
 
 			.getSmsCode {
