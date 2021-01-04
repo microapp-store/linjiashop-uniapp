@@ -3,7 +3,7 @@
 		<view class="u-m-t-20">
 			<u-cell-group>
 				<u-cell-item icon="camera" title="头像" @click="openPage('/pages/setting/updateAvatar')">
-					<u-image slot="right-icon" width="80rpx" height="80rpx" :src="user.wechatHeadImgUrl"></u-image>
+					<u-image slot="right-icon" width="80rpx" height="80rpx" :src="vuex_avatar"></u-image>
 				</u-cell-item>
 				<u-cell-item icon="account" title="姓名" @click="updateNickName" :value="user.nickName"></u-cell-item>
 				<u-cell-item :icon="user.genderIcon?user.genderIcon:'man'" title="性别" @click="updateGender" :value="user.genderStr"></u-cell-item>
@@ -66,7 +66,6 @@
 			}
 		},
 		onLoad() {
-			this.user.imgUrl = this.vuex_avatar;
 			this.init();
 		},
 		methods: {
@@ -88,9 +87,6 @@
 
 				} else {
 					this.user = user;
-				}
-				if (!this.user.wechatHeadImgUrl) {
-					this.user.wechatHeadImgUrl = this.vuex_avatar;
 				}
 			},
 			openPage(url) {
