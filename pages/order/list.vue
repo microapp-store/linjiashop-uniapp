@@ -138,8 +138,8 @@
 									<view class="more">
 										<u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon>
 									</view>
-									<view class="logistics btn">查看物流</view>
-									<view class="evaluate btn">确认收货</view>
+									<view class="logistics btn" @click="expressInfo(res.orderSn)">查看物流</view>
+									<view class="evaluate btn" @click="confirm(res.orderSn)">确认收货</view>
 								</view>
 							</view>
 							<u-loadmore :status="loadStatus[2]" bgColor="#f2f2f2"></u-loadmore>
@@ -268,6 +268,7 @@
 				if (this.loadStatus[current] == 'nomore') {
 					return;
 				}
+				this.listQuery.page++;
 				this.getOrders(current + 1);
 			},
 			getOrders(status) {
@@ -285,6 +286,8 @@
 					}
 					if (orderList.length < limit) {
 						this.loadStatus.splice(status - 1, 1, "nomore");
+					}else{
+						this.loadStatus.splice(status - 1, 1, "more");
 					}
 
 				});
@@ -318,8 +321,6 @@
 			// tab栏切换
 			change(index) {
 				this.swiperCurrent = index;
-				console.log("index", index);
-				// this.getOrders(index+1);
 			},
 			transition({
 				detail: {
@@ -352,13 +353,26 @@
 				})
 			},
 			cancel(orderNo){
-				console.log("orderNo",orderNo);
 				this.$u.post('user/order/cancel/'+orderNo).then( res => {
 					this.getOrders(1);
 				});
 			},
+			expressInfo(orderNo){
+				console.log('查看物流信息',orderNo);
+				this.$u.route({
+					url: '/pages/order/express',
+					params: {
+						orderSn: orderNo
+					}
+				})
+			},
+			confirm(orderNo){
+				console.log('确认收货',orderNo)
+				this.$u.post('user/order/confirm/'+orderNo).then( res => {
+					this.getOrders(3);
+				});
+			},
 			pay(orderNo,totalPrice){
-				console.log("pay",orderNo);
 				this.$u.route({
 					url: '/pages/order/payment/payment',
 					params: {
@@ -383,10 +397,10 @@
 
 <style lang="scss" scoped>
 	.order {
-		width: 710rpx;
+		width:98%;
 		background-color: #ffffff;
-		margin: 20rpx auto;
-		border-radius: 20rpx;
+		margin: 1%;
+		border-radius: 10rpx;
 		box-sizing: border-box;
 		padding: 20rpx;
 		font-size: 28rpx;
