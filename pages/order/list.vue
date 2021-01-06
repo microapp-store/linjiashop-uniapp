@@ -43,7 +43,7 @@
 								</view>
 								<view class="bottom">
 									<view class="more">
-										<u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon>
+										<!-- <u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon> -->
 									</view>
 									<view class="logistics btn" @click="cancel(res.orderSn)">取消订单</view>
 									<view class="evaluate btn" @click="pay(res.orderSn,totalPrice(res.items)*100)">立即付款</view>
@@ -90,7 +90,7 @@
 								</view>
 								<view class="bottom">
 									<view class="more">
-										<u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon>
+										<!-- <u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon> -->
 									</view>
 									<view class="evaluate btn">提醒发货</view>
 								</view>
@@ -136,7 +136,7 @@
 								</view>
 								<view class="bottom">
 									<view class="more">
-										<u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon>
+										<!-- <u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon> -->
 									</view>
 									<view class="logistics btn" @click="expressInfo(res.orderSn)">查看物流</view>
 									<view class="evaluate btn" @click="confirm(res.orderSn)">确认收货</view>
@@ -165,7 +165,7 @@
 									<view class="content" @click="toGoods(item.goods.id)">
 										<view class="title u-line-2">{{ item.goods.name }} </view>
 										<view class="type">{{ item.title }}</view>
-										<view class="delivery-time">付款后5天内发货</view>
+										<view class="delivery-time">已确认收货</view>
 									</view>
 									<view class="right">
 										<view class="price">
@@ -183,8 +183,9 @@
 								</view>
 								<view class="bottom">
 									<view class="more">
-										<u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon>
+									 <!-- <u-icon name="more-dot-fill" color="rgb(203,203,203)"  ></u-icon> -->
 									</view>
+									<view class="logistics btn" @click="expressInfo(res.orderSn)">查看物流</view>
 									<view class="evaluate btn">评价</view>
 								</view>
 							</view>
@@ -194,13 +195,15 @@
 				</swiper-item>
 			</swiper>
 		</view>
+	
+ 
 	</view>
 </template>
 
-<script>
+<script> 
 	export default {
 		data() {
-			return {			 
+			return {
 				imgUrl: this.baseApi + '/file/getImgStream?idFile=',
 				orders: [
 					[],
@@ -551,4 +554,5 @@
 	.swiper-item {
 		height: 100%;
 	}
+	 
 </style>
