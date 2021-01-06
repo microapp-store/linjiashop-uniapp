@@ -1,38 +1,27 @@
 <template>
 	<view class="wrap">
 		<view class="top"></view>
-		<view class="content">
-			<view class="title">欢迎登录邻家小铺</view>
-			<input class="u-border-bottom" type="number" v-model="tel" placeholder="输入测试账号:1501111222体验更多功能" />
-			<view class="tips">未注册的手机号验证后自动创建邻家小铺账号</view>
-			<button @tap="submit" :style="[inputStyle]" class="getSmsCode">获取短信验证码</button>
-			<view class="alternative">
-				<view class="password" @click="passwordLogin">密码登录</view>
-				<view class="issue">遇到问题</view>
+		<view class="content">			
+			<view>
+					<u-field v-model="tel" label="账号:" placeholder="输入手机号码"/>
+					<u-field v-model="password" type="password" label="密码:" placeholder="输入密码"/>
 			</view>
-		</view>
-		<view class="buttom">
-			<view class="loginType">
-				<view class="wechat item" @click="loginBy('wechat')">
-					<view class="icon">
-						<u-icon size="70" name="weixin-fill" color="rgb(83,194,64)"></u-icon>
-					</view>
-					微信
-				</view>
-				<view class="QQ item" @click="loginBy('QQ')">
-					<view class="icon">
-						<u-icon size="70" name="qq-fill" color="rgb(17,183,233)"></u-icon>
-					</view>
-					QQ
-				</view>
-			</view>
+			<!-- <view class="hint">
+				登录即表明
+				<text class="link" @click="goPage('/pages/login/userProtocol')">同意协议</text>和
+				<text class="link" @click="goPage('/pages/login/privateProtocol')">隐私政策</text>
+			</view -->>
+			
 			<view class="hint">
 				登录代表同意
 				<text class="link" @click="goPage('/pages/login/userProtocol')">邻家小铺用户协议</text>、
 				<text class="link" @click="goPage('/pages/login/privateProtocol')">隐私政策，</text>
 				并授权使用您的邻家小铺账号信息（如昵称、头像、收获地址）以便您统一管理
 			</view>
+			<button @tap="submit" :style="[inputStyle]" class="getSmsCode">登录</button>
+			
 		</view>
+		
 	</view>
 </template>
 
@@ -60,13 +49,11 @@
 					this.$u.toast('请输入正确手机号');
 					return;
 				}
-				this.$u.post('sendSmsCode?mobile='+this.tel).then(res => {					
+				idAddress='+this.chooseAddrId+'&idCarts='+idCarts
+				this.$u.post('telPasswordLogin?mobile='+this.tel+'&password='+this.password).then(res => {					
 					this.$u.route({
-						url: '/pages/login/smsCode',
-						params:{
-							mobile:this.tel,
-							result:res
-						}
+						type: 'switchTab',
+						url: '/pages/user/profile'
 					})
 				}).catch( res => {
 					console.log("err",res);
@@ -80,13 +67,7 @@
 				this.$u.route({
 					url: url
 				})
-			},
-			passwordLogin(){
-				this.$u.route({
-					url: '/pages/login/passwordLogin'
-				})
-			},
-		
+			}
 		}
 	};
 </script>

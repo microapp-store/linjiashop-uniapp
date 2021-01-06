@@ -39,6 +39,12 @@
 			}
 		},
 		{
+			"path": "pages/login/passwordLogin",
+			"style": {
+				"navigationBarTitleText": "手机号密码登录"
+			}
+		},
+		{
 			"path": "pages/login/smsCode",
 			"style": {
 				"navigationBarTitleText": "登录获取验证码"
