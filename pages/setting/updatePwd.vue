@@ -45,13 +45,10 @@
 					this.$u.toast('前后密码不一致');
 					return;
 				}
-				this.$u.post('sendSmsCode?mobile=' + this.tel).then(res => {
+				this.$u.post('user/updatePassword_v2/' + this.password+'/'+this.smsCode).then(res => {
 					this.$u.route({
-						url: '/pages/login/smsCode',
-						params: {
-							mobile: this.tel,
-							result: res
-						}
+						type: 'switchTab',
+						url: '/pages/user/profile'
 					})
 				}).catch(res => {
 					console.log("err", res);
@@ -65,7 +62,12 @@
 				this.$u.route({
 					url: url
 				})
-			}
+			},
+			getSmsCode() {
+				const user = this.vuex_user;
+				this.$u.post('sendSmsCode?mobile='+user.mobile).then(response => {					
+				}) 
+			},
 		}
 	};
 </script>
