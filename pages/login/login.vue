@@ -11,7 +11,7 @@
 				<view class="issue">遇到问题</view>
 			</view>
 		</view>
-		<view class="buttom">
+		<view class="bottom">
 			<view class="loginType">
 				<view class="wechat item" @click="loginBy('wechat')">
 					<view class="icon">
@@ -138,7 +138,7 @@
 			}
 		}
 
-		.buttom {
+		.bottom {
 			.loginType {
 				display: flex;
 				padding: 260rpx 150rpx 150rpx 150rpx;
