@@ -3,8 +3,11 @@
 		<view class="top"></view>
 		<view class="content">
 			<view class="title">欢迎登录邻家小铺</view>
-			<input class="u-border-bottom" type="number" v-model="tel" placeholder="测试账号:1501111222" />
-			<view class="tips">未注册的手机号验证后自动创建邻家小铺账号</view>
+			<u-form-item>
+				<u-input type="number" v-model="tel" placeholder="请输入手机号" />
+			</u-form-item> 
+			<!-- <view class="tips">未注册的手机号验证后自动创建邻家小铺账号</view> -->
+		 
 			<button @tap="submit" :style="[inputStyle]" class="getSmsCode">获取短信验证码</button>
 			<view class="alternative">
 				<view class="password" @click="passwordLogin">密码登录</view>
@@ -53,24 +56,26 @@
 				return style;
 			}
 		},
+		onLoad(){
+			this.$u.toast('测试账号15011112222');
+		},
 		methods: {
 			submit() {
-
 				if (!(this.tel && this.tel.length == 11 && this.tel.startsWith('1'))) {
 					this.$u.toast('请输入正确手机号');
 					return;
 				}
-				this.$u.post('sendSmsCode?mobile='+this.tel).then(response => {		
+				this.$u.post('sendSmsCode?mobile=' + this.tel).then(response => {
 					this.$u.route({
 						url: '/pages/login/smsCode',
-						params:{
-							mobile:this.tel,
-							result:response
+						params: {
+							mobile: this.tel,
+							result: response
 						}
 					})
-				}) 
+				})
 			},
-			loginBy(type){
+			loginBy(type) {
 				this.$u.toast('第三方账号登录开发中，敬请期待')
 			},
 			goPage(url) {
@@ -78,12 +83,12 @@
 					url: url
 				})
 			},
-			passwordLogin(){
+			passwordLogin() {
 				this.$u.route({
 					url: '/pages/login/passwordLogin'
 				})
 			},
-		
+
 		}
 	};
 </script>
@@ -94,7 +99,8 @@
 
 		.content {
 			width: 600rpx;
-			margin: 80rpx auto 0;
+			margin: 0 auto;
+			padding-top: 80rpx;
 
 			.title {
 				text-align: left;
@@ -111,7 +117,7 @@
 
 			.tips {
 				color: $u-type-info;
-				font-size:20rpx;
+				font-size: 20rpx;
 				margin-bottom: 60rpx;
 				margin-top: 30rpx;
 			}

@@ -35,13 +35,13 @@
 		{
 			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "登录"
+				"navigationBarTitleText": ""
 			}
 		},
 		{
 			"path": "pages/login/passwordLogin",
 			"style": {
-				"navigationBarTitleText": "手机号密码登录"
+				"navigationBarTitleText": ""
 			}
 		},
 		{
