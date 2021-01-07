@@ -10,6 +10,7 @@
 - linjiashop-uniapp，是[邻家小铺](http://microapp.gitee.io/linjiashop/)的uniapp版本，通过uniapp技术达到一套代码覆盖全平台(H5,Android,IOS,微信小程序，其他如支付宝，qq，头条小程序也可以通过简单的适配实现)的目的
 - 项目地址[gitee](https://gitee.com/microapp/linjiashop-uniapp),[github](https://github.com/microapp-store/linjiashop-uniapp)
 - [官方文档：http://microapp.gitee.io/linjiashop/](http://microapp.gitee.io/linjiashop/ecosystem/uniapp.html)
+- linjiashop-uniapp使用了[uView组件](https://www.uviewui.com)作为前端框架，开发过程可以多看其官方文档
 - [点击加群交流反馈：254059156](http://qm.qq.com/cgi-bin/qm/qr?k=EEHjlB4XyM-Kh2eMCbRPRoT38-V3au0T&authKey=NE856fZKPJLjtJTwOA1MlWWtcATVwT4e3zhjCOHeye8am2posApW%2Fw%3D%3D&group_code=254059156)
 
 ## 演示

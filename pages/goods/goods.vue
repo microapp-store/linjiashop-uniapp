@@ -138,7 +138,6 @@
 					sku.price = (sku.price / 100).toFixed(2)
 
 					if (!sku.none_sku) {
-
 						for (var i in sku.tree) {
 							for (var m in sku.tree[i].v) {
 								sku.tree[i].v[m].mode = 'default';
@@ -146,7 +145,6 @@
 							}
 						}
 					}
-					console.log('sku', sku);
 					this.sku = sku;
 					this.stock = goods.stock;
 					this.price = goods.price;

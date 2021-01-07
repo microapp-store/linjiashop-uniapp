@@ -140,6 +140,15 @@
 				"navigationBarTitleText":"收银台"
 			}
         }
+        ,{
+            "path" : "pages/order/express",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "物流信息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	
 	"preloadRule": {

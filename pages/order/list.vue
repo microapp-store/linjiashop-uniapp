@@ -43,10 +43,10 @@
 								</view>
 								<view class="bottom">
 									<view class="more">
-										<u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon>
+										<!-- <u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon> -->
 									</view>
-									<view class="logistics btn">取消订单</view>
-									<view class="evaluate btn">立即付款</view>
+									<view class="logistics btn" @click="cancel(res.orderSn)">取消订单</view>
+									<view class="evaluate btn" @click="pay(res.orderSn,totalPrice(res.items)*100)">立即付款</view>
 								</view>
 							</view>
 							<u-loadmore :status="loadStatus[0]" bgColor="#f2f2f2"></u-loadmore>
@@ -90,7 +90,7 @@
 								</view>
 								<view class="bottom">
 									<view class="more">
-										<u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon>
+										<!-- <u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon> -->
 									</view>
 									<view class="evaluate btn">提醒发货</view>
 								</view>
@@ -136,10 +136,10 @@
 								</view>
 								<view class="bottom">
 									<view class="more">
-										<u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon>
+										<!-- <u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon> -->
 									</view>
-									<view class="logistics btn">查看物流</view>
-									<view class="evaluate btn">确认收货</view>
+									<view class="logistics btn" @click="expressInfo(res.orderSn)">查看物流</view>
+									<view class="evaluate btn" @click="confirm(res.orderSn)">确认收货</view>
 								</view>
 							</view>
 							<u-loadmore :status="loadStatus[2]" bgColor="#f2f2f2"></u-loadmore>
@@ -165,7 +165,7 @@
 									<view class="content" @click="toGoods(item.goods.id)">
 										<view class="title u-line-2">{{ item.goods.name }} </view>
 										<view class="type">{{ item.title }}</view>
-										<view class="delivery-time">付款后5天内发货</view>
+										<view class="delivery-time">已确认收货</view>
 									</view>
 									<view class="right">
 										<view class="price">
@@ -183,8 +183,9 @@
 								</view>
 								<view class="bottom">
 									<view class="more">
-										<u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon>
+									 <!-- <u-icon name="more-dot-fill" color="rgb(203,203,203)"  ></u-icon> -->
 									</view>
+									<view class="logistics btn" @click="expressInfo(res.orderSn)">查看物流</view>
 									<view class="evaluate btn">评价</view>
 								</view>
 							</view>
@@ -194,13 +195,15 @@
 				</swiper-item>
 			</swiper>
 		</view>
+	
+ 
 	</view>
 </template>
 
-<script>
+<script> 
 	export default {
 		data() {
-			return {			 
+			return {
 				imgUrl: this.baseApi + '/file/getImgStream?idFile=',
 				orders: [
 					[],
@@ -268,11 +271,13 @@
 				if (this.loadStatus[current] == 'nomore') {
 					return;
 				}
+				this.listQuery.page++;
 				this.getOrders(current + 1);
 			},
 			getOrders(status) {
 				const page = this.listQuery.page;
 				const limit = this.listQuery.limit;
+				this.orders[status - 1] = new Array();
 				this.loadStatus.splice(status - 1, 1, "loading");
 				this.$u.get('user/order/getOrders?page=' + page + '&limit=' + limit + '&status=' + status).then(res => {
 					let orderList = res.records;
@@ -284,7 +289,8 @@
 					}
 					if (orderList.length < limit) {
 						this.loadStatus.splice(status - 1, 1, "nomore");
-						console.log(this.loadStatus);
+					}else{
+						this.loadStatus.splice(status - 1, 1, "more");
 					}
 
 				});
@@ -318,8 +324,6 @@
 			// tab栏切换
 			change(index) {
 				this.swiperCurrent = index;
-				console.log("index", index);
-				// this.getOrders(index+1);
 			},
 			transition({
 				detail: {
@@ -350,6 +354,35 @@
 						id: id
 					}
 				})
+			},
+			cancel(orderNo){
+				this.$u.post('user/order/cancel/'+orderNo).then( res => {
+					this.getOrders(1);
+				});
+			},
+			expressInfo(orderNo){
+				console.log('查看物流信息',orderNo);
+				this.$u.route({
+					url: '/pages/order/express',
+					params: {
+						orderSn: orderNo
+					}
+				})
+			},
+			confirm(orderNo){
+				console.log('确认收货',orderNo)
+				this.$u.post('user/order/confirm/'+orderNo).then( res => {
+					this.getOrders(3);
+				});
+			},
+			pay(orderNo,totalPrice){
+				this.$u.route({
+					url: '/pages/order/payment/payment',
+					params: {
+						orderSn: orderNo,
+						totalPrice: totalPrice
+					}
+				})
 			}
 		}
 	};
@@ -367,10 +400,10 @@
 
 <style lang="scss" scoped>
 	.order {
-		width: 710rpx;
+		width:98%;
 		background-color: #ffffff;
-		margin: 20rpx auto;
-		border-radius: 20rpx;
+		margin: 1%;
+		border-radius: 10rpx;
 		box-sizing: border-box;
 		padding: 20rpx;
 		font-size: 28rpx;
@@ -521,4 +554,5 @@
 	.swiper-item {
 		height: 100%;
 	}
+	 
 </style>

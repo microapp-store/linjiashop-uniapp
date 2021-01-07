@@ -15,6 +15,7 @@
 						<view class="gl-price">￥{{formatPrice(item.price)}}</view>
 					</u-col>
 				</u-row>
+				<u-loadmore :status="status" />
 			</view>
 		</view>
 	</view>
@@ -30,25 +31,32 @@
 				goodsList: [],
 				listQuery: {
 					page: 1,
-					limit: 50,
+					limit: 20,
 					idCategory: undefined
 				},
-				total: 0
+				total: 0,
+				status: 'loadmore'
 			}
 		},
 		onLoad(option) {
-			this.activeNav = option.itemId;
-			this.init();
+			this.activeNav = option.itemId
+			this.listQuery.page = 1
+			this.goodsList = []
+			this.init()
+		},
+		onReachBottom() {
+			this.listQuery.page = this.listQuery.page + 1
+			this.getGoods(this.activeNav)
 		},
 		methods: {
 			init() {
-				this.getBanners(this.activeNav);
-				this.getGoods(this.activeNav);
+				this.getBanners(this.activeNav)
+				this.getGoods(this.activeNav)
 			},
 			async getBanners(categoryIndex) {
-				const baseApi = this.baseApi;
-				let bannerList = null;
-				let navList = this.vuex_navlist;
+				const baseApi = this.baseApi
+				let bannerList = null
+				let navList = this.vuex_navlist
 				if (navList.length == 0) {
 					let ret = await this.$u.get('category/list');
 					navList = ret;
@@ -74,21 +82,22 @@
 				this.banners = imgList
 			},
 			changeNav(index) {
-				console.log("index", index);
-				this.activeNav = index;
+				this.activeNav = index
 				if (index == 0) {
 					this.$u.route({
 						type: 'switchTab',
 						url: '/pages/shop/index'
 					})
 				} else {
-					this.getBanners(index);
-					this.getGoods(index);
+					this.listQuery.page = 1
+					this.goodsList = []
+					this.getBanners(index)
+					this.getGoods(index)
 				}
 
 			},
 			clickBanner(index) {
-				let banners = this.originBanners;
+				let banners = this.originBanners
 				for (let i = 0; i < banners.length; i++) {
 					if (index == i) {
 						let url = ''
@@ -109,38 +118,44 @@
 						}
 
 						if (url.startsWith("http")) {
-							window.location.href = url;
+							window.location.href = url
 						}
 
 					}
 				}
 			},
 			getGoods(idCategory) {
+				this.status = 'loading'
 				this.listQuery['idCategory'] = idCategory
-				const page = this.listQuery.page;
-				const limit = this.listQuery.limit;
+				const page = this.listQuery.page
+				const limit = this.listQuery.limit
 				const baseApi = this.baseApi;
 				this.$u.get('goods/queryGoods?page=' + page + '&limit=' + limit + '&idCategory=' + idCategory).then(res => {
 					let list = res.records
 					this.total = res.total
+					if (list.length < limit) {
+						this.status = 'nomore'
+					} else {
+						this.status = 'loadmore'
+					}
 					for (var index in list) {
 						const item = list[index]
 						item.img = baseApi + '/file/getImgStream?idFile=' + item.pic
+						this.goodsList.push(item)
 					}
-					this.goodsList = list
 
 				}).catch((err) => {
 					Toast(err)
 				})
 			},
 			formatPrice(price) {
-				return (price / 100).toFixed(2);
+				return (price / 100).toFixed(2)
 			},
-			toDetail(id){
+			toDetail(id) {
 				this.$u.route({
-					url:'/pages/goods/goods',
-					params:{
-						id:id
+					url: '/pages/goods/goods',
+					params: {
+						id: id
 					}
 				})
 			}

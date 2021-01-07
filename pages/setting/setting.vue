@@ -3,7 +3,7 @@
 		<view class="u-m-t-20">
 			<u-cell-group>
 				<u-cell-item icon="camera" title="头像" @click="openPage('/pages/setting/updateAvatar')">
-					<u-image slot="right-icon" width="80rpx" height="80rpx" :src="user.wechatHeadImgUrl"></u-image>
+					<u-image slot="right-icon" width="80rpx" height="80rpx" :src="vuex_avatar"></u-image>
 				</u-cell-item>
 				<u-cell-item icon="account" title="姓名" @click="updateNickName" :value="user.nickName"></u-cell-item>
 				<u-cell-item :icon="user.genderIcon?user.genderIcon:'man'" title="性别" @click="updateGender" :value="user.genderStr"></u-cell-item>
@@ -12,7 +12,7 @@
 		<view class="u-m-t-20">
 			<u-cell-group>
 				<u-cell-item icon="lock" title="修改密码" @click="openPage('/pages/setting/updatePwd')"></u-cell-item>
-				<u-cell-item icon="phone" title="更换手机" @click="openPage('/pages/setting/updateMobile')" :value="user.mobile"></u-cell-item>
+				<u-cell-item icon="phone" title="更换手机" @click="todo('/pages/setting/updateMobile')" :value="user.mobile"></u-cell-item>
 
 			</u-cell-group>
 		</view>
@@ -28,9 +28,9 @@
 			<u-button @click="logout">退出</u-button>
 		</view>
 
-		<u-modal v-model="nickName.show" title="修改用户名" @confirm="submitNickName">
-			<view>
-				<u-input style="padding: 0rpx 30rpx;" v-model="nickName.value" placeholder="请输入用户名" />
+		<u-modal v-model="nickName.show" title="修改用户名" @confirm="submitNickName" :show-cancel-button="true">
+			<view style="padding:10px 50px;">
+				<u-input style="padding: 0rpx 30rpx;background-color: #ededed;" v-model="nickName.value" placeholder="请输入用户名" />
 			</view>
 		</u-modal>
 
@@ -66,7 +66,6 @@
 			}
 		},
 		onLoad() {
-			this.user.imgUrl = this.vuex_avatar;
 			this.init();
 		},
 		methods: {
@@ -89,20 +88,18 @@
 				} else {
 					this.user = user;
 				}
-				if (!this.user.wechatHeadImgUrl) {
-					this.user.wechatHeadImgUrl = this.vuex_avatar;
-				}
 			},
 			openPage(url) {
 				if (this.user.nickName == '未登录') {
 					this.$u.route('/pages/login/login');
 					return;
-				}
-				this.$u.toast('开发中');
-				return;
+				}				
 				this.$u.route({
 					url: url
 				})
+			},
+			todo(url){
+				this.$u.toast('开发中');
 			},
 			updateNickName() {
 
