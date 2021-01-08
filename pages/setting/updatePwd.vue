@@ -1,9 +1,9 @@
 <template>
 	<view class="wrap">
 		<view class="content">
-			<u-field v-model="password" label="新密码" placeholder="请填写新密码">
+			<u-field v-model="password" type="password" label="新密码" placeholder="请填写新密码">
 			</u-field>
-			<u-field v-model="rePassword" label="重复密码" placeholder="请重复填写新密码">
+			<u-field v-model="rePassword" type="password" label="重复密码" placeholder="请重复填写新密码">
 			</u-field>
 			<u-field v-model="smsCode" label="验证码" placeholder="请填写验证码">
 				<u-button size="mini" slot="right" type="success" :disabled="smsCodeDisabled" @click="getSmsCode">{{codeText}}</u-button>
@@ -55,7 +55,7 @@
 					})
 				}).catch(res => {
 					console.log("err", res);
-					this.$u.toast(res.data.message);
+					this.$u.toast(res.msg);
 				})
 			}, 
 			goPage(url) {

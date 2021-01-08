@@ -65,7 +65,7 @@
 					})
 				}).catch(res => {
 					console.log("err", res);
-					this.$u.toast(res.data.message);
+					this.$u.toast(res.msg);
 				})
 			},
 			goPage(url) {
