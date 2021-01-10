@@ -62,7 +62,7 @@
 				// #ifdef H5
 				if ('wxpay' === this.payType) {
 					this.$u.post('pay/wx/prepare?orderSn=' + this.orderSn).then(res => {
-						console.log('res',res)
+						 
 						this.wxPayH5({
 								appId: res.appId,
 								nonceStr: res.nonceStr,
@@ -132,7 +132,6 @@
 						paySign: paySign, // 支付签名
 						success: function(res) {
 							// 支付成功后的回调函数
-							that.$router.push('/payment/callback/' + that.order.orderSn)
 							this.$u.route({
 								url: '/pages/order/payment/callback',
 								params: {
@@ -142,7 +141,7 @@
 						},
 						fail: function(res) {
 							//失败回调函数
-							Toast('支付失败')
+							this.$u.toast('支付失败')
 						}
 					})
 				})
