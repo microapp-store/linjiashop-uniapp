@@ -55,14 +55,28 @@
 		onLoad(option) {
 			this.orderSn = option.orderSn;
 			this.totalPrice = option.totalPrice;
+			this.init()
 		},
 		methods: {
+			init() {
+				this.$u.get('pay/queryResult/' + this.orderSn).then(res => { 
+					//如果当前订单已经支付成功跳转到订单详情页
+					if (res == true) {
+						this.$u.route({
+							url: '/pages/order/detail',
+							params: {
+								orderSn: orderSn
+							}
+						})
+					}
+				})
+			},
 			submit() {
 				console.log('payType', this.payType);
 				// #ifdef H5
 				if ('wxpay' === this.payType) {
 					this.$u.post('pay/wx/prepare?orderSn=' + this.orderSn).then(res => {
-						 
+
 						this.wxPayH5({
 								appId: res.appId,
 								nonceStr: res.nonceStr,
@@ -123,6 +137,7 @@
 					signature: signature, // 必填，签名，见附录1
 					jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 				})
+				let me = this
 				wx.ready(function() {
 					wx.chooseWXPay({
 						timestamp: timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
@@ -132,14 +147,17 @@
 						paySign: paySign, // 支付签名
 						success: function(res) {
 							// 支付成功后的回调函数
-							this.$u.route({
-								url: '/pages/order/payment/callback',
-								params: {
-									orderSn: orderSn
-								}
-							})
+							 
+								this.$u.route({
+									url: '/pages/order/payment/callback',
+									params: {
+										orderSn: this.orderSn
+									}
+								})
+							 
 						},
 						fail: function(res) {
+							alert('fail' + JSON.stringify(res))
 							//失败回调函数
 							this.$u.toast('支付失败')
 						}

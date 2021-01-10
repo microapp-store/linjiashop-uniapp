@@ -26,8 +26,7 @@
 		},
 		methods: {
 			init() {
-				this.$u.get('pay/queryResult/' + this.orderSn).then(res => {
-					console.log('res', res)
+				this.$u.get('pay/queryResult/' + this.orderSn).then(res => { 
 					if (res == true) {
 						this.result = "支付成功"
 						this.isSuccess = true
@@ -41,7 +40,7 @@
 				this.$u.route({
 					url: '/pages/order/detail',
 					params: {
-						orderSn: orderSn
+						orderSn: this.orderSn
 					}
 				})
 			}

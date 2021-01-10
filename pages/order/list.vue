@@ -37,7 +37,7 @@
 								<view class="total">
 									共{{ totalNum(res.items) }}件商品 合计:
 									<text class="total-price">
-										￥{{ totalPrice(res.items) }}
+										￥{{ formatPrice(res.totalPrice) }}
 
 									</text>
 								</view>
