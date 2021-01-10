@@ -11,7 +11,7 @@
 				<u-row gutter="16">
 
 					<u-col :span="3">
-						<u-image width="100%" height="150rpx" :src="item.thumb"></u-image>
+						<u-image width="100%" height="150rpx" :src="imgUrl+item.goods.pic"></u-image>
 					</u-col>
 					<u-col :span="9" @click="toGoods(item.goods.id)">
 						<view class="gl-name">{{item.goods.name}}</view>
@@ -52,6 +52,7 @@
 	export default {
 		data() {
 			return {
+				imgUrl: this.baseApi + '/file/getImgStream?idFile=',
 				ids: '',
 				addr: {
 					name: '',
@@ -98,7 +99,7 @@
 					let cartList = res.list;
 					for (const index in cartList) {
 						let cart = cartList[index]
-						cart.thumb = baseApi + '/file/getImgStream?idFile=' + cart.goods.pic
+
 					}
 					this.cartList = cartList;
 				});
@@ -128,9 +129,9 @@
 					idAddress: this.chooseAddrId,
 					idCarts: idCarts
 				}
-				console.log('params', params); 
+				console.log('params', params);
 
-				this.$u.post('user/order/save?idAddress='+this.chooseAddrId+'&idCarts='+idCarts).then(res => {
+				this.$u.post('user/order/save?idAddress=' + this.chooseAddrId + '&idCarts=' + idCarts).then(res => {
 					const order = res;
 					this.$u.route({
 						url: '/pages/order/payment/payment',

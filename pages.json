@@ -75,7 +75,9 @@
 			}
 		}, {
 			"path": "pages/order/detail",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
 		}, {
 			"path": "pages/favorite/favorite",
 			"style": {
@@ -145,6 +147,15 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "物流信息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/order/payment/callback",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "支付结果",
                 "enablePullDownRefresh": false
             }
             

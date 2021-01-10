@@ -9,7 +9,7 @@
 				<swiper-item class="swiper-item">
 					<scroll-view scroll-y style="height: 100%;width: 100%;" @scrolltolower="reachBottom">
 						<view class="page-box">
-							<view class="order" v-for="(res, index) in orders[0]" :key="res.id">
+							<view class="order" v-for="(res, index) in orders[0]" :key="res.id" @click="toDetail(res.orderSn)">
 								<view class="top">
 									<view class="left">
 										<u-icon name="home" :size="30" color="rgb(94,94,94)"></u-icon>
@@ -19,10 +19,10 @@
 									<view class="right">{{ res.statusName }}</view>
 								</view>
 								<view class="item" v-for="(item, index) in res.items" :key="index">
-									<view class="left" @click="toGoods(item.goods.id)">
+									<view class="left" >
 										<image :src="imgUrl+item.goods.pic" mode="aspectFill"></image>
 									</view>
-									<view class="content" @click="toGoods(item.goods.id)">
+									<view class="content" >
 										<view class="title u-line-2">{{ item.goods.name }} </view>
 										<view class="type">{{ item.title }}</view>
 										<view class="delivery-time">付款后5天内发货</view>
@@ -56,7 +56,7 @@
 				<swiper-item class="swiper-item">
 					<scroll-view scroll-y style="height: 100%;width: 100%;" @scrolltolower="reachBottom">
 						<view class="page-box">
-							<view class="order" v-for="(res, index) in orders[1]" :key="res.id">
+							<view class="order" v-for="(res, index) in orders[1]" :key="res.id"  @click="toDetail(res.orderSn)">
 								<view class="top">
 									<view class="left">
 										<u-icon name="home" :size="30" color="rgb(94,94,94)"></u-icon>
@@ -66,10 +66,10 @@
 									<view class="right">{{ res.statusName }}</view>
 								</view>
 								<view class="item" v-for="(item, index) in res.items" :key="index">
-									<view class="left" @click="toGoods(item.goods.id)">
+									<view class="left" >
 										<image :src="imgUrl+item.goods.pic" mode="aspectFill"></image>
 									</view>
-									<view class="content" @click="toGoods(item.goods.id)">
+									<view class="content" >
 										<view class="title u-line-2">{{ item.goods.name }} </view>
 										<view class="type">{{ item.title }}</view>
 										<view class="delivery-time">付款后5天内发货</view>
@@ -102,7 +102,7 @@
 				<swiper-item class="swiper-item">
 					<scroll-view scroll-y style="height: 100%;width: 100%;" @scrolltolower="reachBottom">
 						<view class="page-box">
-							<view class="order" v-for="(res, index) in  orders[2]" :key="res.id">
+							<view class="order" v-for="(res, index) in  orders[2]" :key="res.id"  @click="toDetail(res.orderSn)">
 								<view class="top">
 									<view class="left">
 										<u-icon name="home" :size="30" color="rgb(94,94,94)"></u-icon>
@@ -112,10 +112,10 @@
 									<view class="right">{{ res.statusName }}</view>
 								</view>
 								<view class="item" v-for="(item, index) in res.items" :key="index">
-									<view class="left" @click="toGoods(item.goods.id)">
+									<view class="left" >
 										<image :src="imgUrl+item.goods.pic" mode="aspectFill"></image>
 									</view>
-									<view class="content" @click="toGoods(item.goods.id)">
+									<view class="content" >
 										<view class="title u-line-2">{{ item.goods.name }} </view>
 										<view class="type">{{ item.title }}</view>
 										<view class="delivery-time">付款后5天内发货</view>
@@ -149,7 +149,7 @@
 				<swiper-item class="swiper-item">
 					<scroll-view scroll-y style="height: 100%;width: 100%;" @scrolltolower="reachBottom">
 						<view class="page-box">
-							<view class="order" v-for="(res, index) in  orders[3]" :key="res.id">
+							<view class="order" v-for="(res, index) in  orders[3]" :key="res.id"  @click="toDetail(res.orderSn)">
 								<view class="top">
 									<view class="left">
 										<u-icon name="home" :size="30" color="rgb(94,94,94)"></u-icon>
@@ -159,10 +159,10 @@
 									<view class="right">{{ res.statusName }}</view>
 								</view>
 								<view class="item" v-for="(item, index) in res.items" :key="index">
-									<view class="left" @click="toGoods(item.goods.id)">
+									<view class="left" >
 										<image :src="imgUrl+item.goods.pic" mode="aspectFill"></image>
 									</view>
-									<view class="content" @click="toGoods(item.goods.id)">
+									<view class="content" >
 										<view class="title u-line-2">{{ item.goods.name }} </view>
 										<view class="type">{{ item.title }}</view>
 										<view class="delivery-time">已确认收货</view>
@@ -347,11 +347,11 @@
 					url: '/pages/shop/index'
 				})
 			},
-			toGoods(id) {
+			toDetail(orderSn){
 				this.$u.route({
-					url: '/pages/goods/goods',
+					url: '/pages/order/detail',
 					params: {
-						id: id
+						orderSn: orderSn
 					}
 				})
 			},

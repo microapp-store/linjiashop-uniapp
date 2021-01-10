@@ -23,6 +23,10 @@ Vue.mixin(vuexStore)
 let mpShare = require('uview-ui/libs/mixin/mpShare.js');
 Vue.mixin(mpShare)
 
+// weixin
+// import wx from '@/common/weixin-js-sdk.js'
+// weixin
+// Vue.use(wx)
 // i18n部分的配置
 // 引入语言包，注意路径
 import Chinese from '@/common/locales/zh.js';
