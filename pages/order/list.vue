@@ -9,8 +9,8 @@
 				<swiper-item class="swiper-item">
 					<scroll-view scroll-y style="height: 100%;width: 100%;" @scrolltolower="reachBottom">
 						<view class="page-box">
-							<view class="order" v-for="(res, index) in orders[0]" :key="res.id" @click="toDetail(res.orderSn)">
-								<view class="top">
+							<view class="order" v-for="(res, index) in orders[0]" :key="res.id" >
+								<view class="top" @click="toDetail(res.orderSn)">
 									<view class="left">
 										<u-icon name="home" :size="30" color="rgb(94,94,94)"></u-icon>
 										<view class="store">{{ res.orderSn }}</view>
@@ -18,7 +18,7 @@
 									</view>
 									<view class="right">{{ res.statusName }}</view>
 								</view>
-								<view class="item" v-for="(item, index) in res.items" :key="index">
+								<view class="item" v-for="(item, index) in res.items" :key="index" @click="toDetail(res.orderSn)">
 									<view class="left" >
 										<image :src="imgUrl+item.goods.pic" mode="aspectFill"></image>
 									</view>
@@ -34,7 +34,7 @@
 										<view class="number">x{{ item.count }}</view>
 									</view>
 								</view>
-								<view class="total">
+								<view class="total" @click="toDetail(res.orderSn)">
 									共{{ totalNum(res.items) }}件商品 合计:
 									<text class="total-price">
 										￥{{ formatPrice(res.totalPrice) }}
@@ -53,11 +53,12 @@
 						</view>
 					</scroll-view>
 				</swiper-item>
+				
 				<swiper-item class="swiper-item">
 					<scroll-view scroll-y style="height: 100%;width: 100%;" @scrolltolower="reachBottom">
 						<view class="page-box">
-							<view class="order" v-for="(res, index) in orders[1]" :key="res.id"  @click="toDetail(res.orderSn)">
-								<view class="top">
+							<view class="order" v-for="(res, index) in orders[1]" :key="res.id" >
+								<view class="top"  @click="toDetail(res.orderSn)">
 									<view class="left">
 										<u-icon name="home" :size="30" color="rgb(94,94,94)"></u-icon>
 										<view class="store">{{ res.orderSn }}</view>
@@ -65,7 +66,7 @@
 									</view>
 									<view class="right">{{ res.statusName }}</view>
 								</view>
-								<view class="item" v-for="(item, index) in res.items" :key="index">
+								<view class="item" v-for="(item, index) in res.items" :key="index"  @click="toDetail(res.orderSn)">
 									<view class="left" >
 										<image :src="imgUrl+item.goods.pic" mode="aspectFill"></image>
 									</view>
@@ -81,7 +82,7 @@
 										<view class="number">x{{ item.count }}</view>
 									</view>
 								</view>
-								<view class="total">
+								<view class="total"  @click="toDetail(res.orderSn)">
 									共{{ totalNum(res.items) }}件商品 合计:
 									<text class="total-price">
 										￥{{ totalPrice(res.items) }}
@@ -92,7 +93,7 @@
 									<view class="more">
 										<!-- <u-icon name="more-dot-fill" color="rgb(203,203,203)"></u-icon> -->
 									</view>
-									<view class="evaluate btn">提醒发货</view>
+									<view class="evaluate btn" @click="notify(res.orderSn)">提醒发货</view>
 								</view>
 							</view>
 							<u-loadmore :status="loadStatus[1]" bgColor="#f2f2f2"></u-loadmore>
@@ -102,8 +103,8 @@
 				<swiper-item class="swiper-item">
 					<scroll-view scroll-y style="height: 100%;width: 100%;" @scrolltolower="reachBottom">
 						<view class="page-box">
-							<view class="order" v-for="(res, index) in  orders[2]" :key="res.id"  @click="toDetail(res.orderSn)">
-								<view class="top">
+							<view class="order" v-for="(res, index) in  orders[2]" :key="res.id" >
+								<view class="top"  @click="toDetail(res.orderSn)">
 									<view class="left">
 										<u-icon name="home" :size="30" color="rgb(94,94,94)"></u-icon>
 										<view class="store">{{ res.orderSn }}</view>
@@ -111,7 +112,7 @@
 									</view>
 									<view class="right">{{ res.statusName }}</view>
 								</view>
-								<view class="item" v-for="(item, index) in res.items" :key="index">
+								<view class="item" v-for="(item, index) in res.items" :key="index"  @click="toDetail(res.orderSn)">
 									<view class="left" >
 										<image :src="imgUrl+item.goods.pic" mode="aspectFill"></image>
 									</view>
@@ -127,7 +128,7 @@
 										<view class="number">x{{ item.count }}</view>
 									</view>
 								</view>
-								<view class="total">
+								<view class="total"  @click="toDetail(res.orderSn)">
 									共{{ totalNum(res.items) }}件商品 合计:
 									<text class="total-price">
 										￥{{ totalPrice(res.items) }}
@@ -149,8 +150,8 @@
 				<swiper-item class="swiper-item">
 					<scroll-view scroll-y style="height: 100%;width: 100%;" @scrolltolower="reachBottom">
 						<view class="page-box">
-							<view class="order" v-for="(res, index) in  orders[3]" :key="res.id"  @click="toDetail(res.orderSn)">
-								<view class="top">
+							<view class="order" v-for="(res, index) in  orders[3]" :key="res.id">
+								<view class="top"   @click="toDetail(res.orderSn)">
 									<view class="left">
 										<u-icon name="home" :size="30" color="rgb(94,94,94)"></u-icon>
 										<view class="store">{{ res.orderSn }}</view>
@@ -158,7 +159,7 @@
 									</view>
 									<view class="right">{{ res.statusName }}</view>
 								</view>
-								<view class="item" v-for="(item, index) in res.items" :key="index">
+								<view class="item" v-for="(item, index) in res.items" :key="index"   @click="toDetail(res.orderSn)">
 									<view class="left" >
 										<image :src="imgUrl+item.goods.pic" mode="aspectFill"></image>
 									</view>
@@ -174,7 +175,7 @@
 										<view class="number">x{{ item.count }}</view>
 									</view>
 								</view>
-								<view class="total">
+								<view class="total"   @click="toDetail(res.orderSn)">
 									共{{ totalNum(res.items) }}件商品 合计:
 									<text class="total-price">
 										￥{{ totalPrice(res.items) }}
@@ -186,7 +187,7 @@
 									 <!-- <u-icon name="more-dot-fill" color="rgb(203,203,203)"  ></u-icon> -->
 									</view>
 									<view class="logistics btn" @click="expressInfo(res.orderSn)">查看物流</view>
-									<view class="evaluate btn">评价</view>
+									<view class="evaluate btn" @click="comment(res.orderSn)">评价</view>
 								</view>
 							</view>
 							<u-loadmore :status="loadStatus[3]" bgColor="#f2f2f2"></u-loadmore>
@@ -196,7 +197,7 @@
 			</swiper>
 		</view>
 	
- 
+ 	<u-modal v-model="showCancel" content="确认取消该订单?" :show-cancel-button="true"   @confirm="cancelOrder"></u-modal>
 	</view>
 </template>
 
@@ -204,6 +205,8 @@
 	export default {
 		data() {
 			return {
+				showCancel:false,
+				cancelOrderSn:'',
 				imgUrl: this.baseApi + '/file/getImgStream?idFile=',
 				orders: [
 					[],
@@ -250,42 +253,42 @@
 			priceDecimal() {
 				return val => {
 					if (val !== parseInt(val)) {
-						return val.slice(-2);
+						return val.slice(-2)
 					} else {
-						return '00';
+						return '00'
 					}
 				};
 			},
 			// 价格整数
 			priceInt() {
 				return val => {
-					if (val !== parseInt(val)) return val.split('.')[0];
-					else return val;
+					if (val !== parseInt(val)) return val.split('.')[0]
+					else return val
 				};
 			}
 
 		},
 		methods: {
 			reachBottom() {
-				const current = this.current;
+				const current = this.current
 				if (this.loadStatus[current] == 'nomore') {
-					return;
+					return
 				}
-				this.listQuery.page++;
-				this.getOrders(current + 1);
+				this.listQuery.page++
+				this.getOrders(current + 1)
 			},
 			getOrders(status) {
-				const page = this.listQuery.page;
-				const limit = this.listQuery.limit;
-				this.orders[status - 1] = new Array();
-				this.loadStatus.splice(status - 1, 1, "loading");
+				const page = this.listQuery.page
+				const limit = this.listQuery.limit
+				this.orders[status - 1] = new Array()
+				this.loadStatus.splice(status - 1, 1, "loading")
 				this.$u.get('user/order/getOrders?page=' + page + '&limit=' + limit + '&status=' + status).then(res => {
-					let orderList = res.records;
+					let orderList = res.records
 					for (let index in orderList) {
-						let order = orderList[index];
-						order.title = '' + order.createTime;
-						order.descript = '' + order.orderSn;
-						this.orders[status - 1].push(order);
+						let order = orderList[index]
+						order.title = '' + order.createTime
+						order.descript = '' + order.orderSn
+						this.orders[status - 1].push(order)
 					}
 					if (orderList.length < limit) {
 						this.loadStatus.splice(status - 1, 1, "nomore");
@@ -296,15 +299,15 @@
 				});
 			},
 			formatPrice(val) {
-				return (val / 100).toFixed(2);
+				return (val / 100).toFixed(2)
 			},
 			// 总价
 			totalPrice(item) {
-				let price = 0;
+				let price = 0
 				item.map(val => {
-					price += val.price;
+					price += val.price
 				});
-				return this.formatPrice(price);
+				return this.formatPrice(price)
 			},
 			// 总件数
 			totalNum(item) {
@@ -323,23 +326,23 @@
 			},
 			// tab栏切换
 			change(index) {
-				this.swiperCurrent = index;
+				this.swiperCurrent = index
 			},
 			transition({
 				detail: {
 					dx
 				}
 			}) {
-				this.$refs.tabs.setDx(dx);
+				this.$refs.tabs.setDx(dx)
 			},
 			animationfinish({
 				detail: {
 					current
 				}
 			}) {
-				this.$refs.tabs.setFinishCurrent(current);
-				this.swiperCurrent = current;
-				this.current = current;
+				this.$refs.tabs.setFinishCurrent(current)
+				this.swiperCurrent = current
+				this.current = current
 			},
 			toHome() {
 				this.$u.route({
@@ -356,12 +359,16 @@
 				})
 			},
 			cancel(orderNo){
-				this.$u.post('user/order/cancel/'+orderNo).then( res => {
-					this.getOrders(1);
-				});
+				this.showCancel = true
+				this.cancelOrderSn = orderNo
+			},
+			cancelOrder(){
+				this.$u.post('user/order/cancel/'+this.cancelOrderSn).then( res => {
+					this.getOrders(1)
+				})
 			},
 			expressInfo(orderNo){
-				console.log('查看物流信息',orderNo);
+				console.log('查看物流信息',orderNo)
 				this.$u.route({
 					url: '/pages/order/express',
 					params: {
@@ -372,8 +379,12 @@
 			confirm(orderNo){
 				console.log('确认收货',orderNo)
 				this.$u.post('user/order/confirm/'+orderNo).then( res => {
-					this.getOrders(3);
+					this.getOrders(3)
 				});
+			},
+			notify(orderSn){
+				console.log('提醒发货',orderSn)
+				this.$u.toast('敬请期待')
 			},
 			pay(orderNo,totalPrice){
 				this.$u.route({
@@ -383,6 +394,10 @@
 						totalPrice: totalPrice
 					}
 				})
+			},
+			comment(orderSn){
+				console.log('评论',orderSn)
+				this.$u.toast('敬请期待')
 			}
 		}
 	};
@@ -491,10 +506,11 @@
 			display: flex;
 			margin-top: 40rpx;
 			padding: 0 10rpx;
-			justify-content: space-between;
+			justify-content: flex-end;
 			align-items: center;
 
 			.btn {
+				margin-left:20rpx;
 				line-height: 52rpx;
 				width: 160rpx;
 				border-radius: 26rpx;
