@@ -29,7 +29,7 @@
 								<view class="gl-price">
 									<u-row>
 										<u-col offset="6" :span="3" text-align="right">
-											￥{{formatPrice(item.goods.price)}}
+											￥{{formatPrice(item.price)}}
 										</u-col>
 										<u-col :span="3" text-align="right">
 											x{{item.count}}
