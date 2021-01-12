@@ -162,12 +162,6 @@
         }
     ],
 	
-	"preloadRule": {
-		"pages/example/components": {
-			"network": "all",
-			"packages": ["pages/componentsA", "pages/componentsB", "pages/componentsC"]
-		}
-	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "邻家小铺",
