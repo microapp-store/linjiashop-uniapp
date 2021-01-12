@@ -40,7 +40,7 @@
 export default {
 	data() {
 		return {
-			aa:true,
+			choose:true,
 			show: false,
 			id:'',
 			address:{isDefault:false},
@@ -55,7 +55,10 @@ export default {
 		}
 	},
 	onLoad(option){
-		this.id = option.id
+		this.id = option.id 
+		if(option.choose){
+			this.choose = option.choose
+		}
 		if(this.id){
 			this.init()
 		}else{
@@ -67,13 +70,11 @@ export default {
 	methods: {
 		init(){
 			this.$u.get('user/address/'+this.id).then( res => {
-				console.log('res1',res)
-				const code1 = res.areaCode.substr(0,2);
-				const code2 = res.areaCode.substr(0,4);
-				const code3 = res.areaCode;
-				this.defaultRegion = [code1,code2,code3];
-				console.log('default',this.defaultRegion);
-				this.address = res;
+				const code1 = res.areaCode.substr(0,2)
+				const code2 = res.areaCode.substr(0,4)
+				const code3 = res.areaCode
+				this.defaultRegion = [code1,code2,code3]
+				this.address = res
 			});
 		},
 		setDefault() {},
@@ -85,7 +86,7 @@ export default {
 			//设置选择器默认值
 			this.defaultRegion = [e.province.value,e.city.value,e.area.value]
 			//设置输入框值
-			this.address = {isDefault:false}
+			this.address =   Object.assign({},this.address)
 			this.address.province = e.province.label
 			this.address.city = e.city.label
 			this.address.district = e.area.label
@@ -99,7 +100,23 @@ export default {
 		},
 		save(){
 			this.$u.post('user/address/save',this.address).then( res => {
-				this.$u.route('/pages/address/list')
+				if(this.choose){
+					let idCarts = uni.getStorageSync('idCarts')
+					if (idCarts && idCarts !== '') {
+						uni.setStorageSync('chooseAddrId', res.id);
+						 this.$u.route({
+						 	url:'/pages/checkout/checkout',
+						 	params:{
+						 		ids:idCarts
+						 	}
+						 })
+					}else{
+						this.$u.route('/pages/address/list')
+					}
+					
+				}else{
+					this.$u.route('/pages/address/list')
+				}
 			})
 		},
 		del(){

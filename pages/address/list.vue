@@ -22,7 +22,7 @@
 			</u-row>
 		</view>
 		</u-radio-group>
-		<view class="addSite" @tap="toAddAddr" v-if="!choose">
+		<view class="addSite" @tap="toAddAddr">
 			<view class="add">
 				<u-icon name="plus" color="#ffffff" class="icon" :size="30"></u-icon>新建收货地址
 			</view>
@@ -39,13 +39,13 @@
 				choose: false
 			};
 		},
-		onLoad(e) {
-			if (e.choose) {
-				this.choose = true;
+		onLoad(option) {
+			if (option.choose) {
+				this.choose = true
 			}
 		},
 		onShow() {
-			this.init();
+			this.init()
 		},
 		methods: {
 			init() {
@@ -55,7 +55,6 @@
 			},
 
 			toEditAddr(id) {
-				console.log('id', id);
 				this.$u.route({
 					url: '/pages/address/address',
 					params: {
@@ -64,16 +63,20 @@
 				})
 			},
 			toAddAddr() {
-				this.$u.route('/pages/address/address');
+				this.$u.route({
+					url: '/pages/address/address',
+					params: {
+						choose: this.choose 
+					}
+				})
 			},
 			chgRadio(id){
-				console.log("id",id);
-				uni.setStorageSync('chooseAddrId', id);
+				uni.setStorageSync('chooseAddrId', id)
 				this.$u.route({
 					type:'navigateBack',
 					delta:1
 				})
-				return true;
+				return true
 				
 			}
 			

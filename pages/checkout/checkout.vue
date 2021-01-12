@@ -69,43 +69,42 @@
 			}
 		},
 		onShow() {
-			let chooseAddrId = uni.getStorageSync('chooseAddrId');
-			console.log('1', chooseAddrId);
-			console.log('2', this.chooseAddrId);
+			let chooseAddrId = uni.getStorageSync('chooseAddrId')
 			if (chooseAddrId && chooseAddrId !== this.chooseAddrId) {
-				this.chooseAddrId = chooseAddrId;
-				this.init();
+				this.chooseAddrId = chooseAddrId
+				this.init()
 			}
 		},
-		onLoad(e) {
-			console.log('e', e);
-			this.ids = e.ids;
+		onLoad(option) {
+			this.ids = option.ids
+			uni.setStorageSync('idCarts', option.ids)
+			console.log("idCarts from cache", uni.getStorageSync('idCarts'))
 			this.init();
 		},
 		methods: {
 			init() {
-				const baseApi = this.baseApi;
-				let url = 'user/order/prepareCheckout?idCarts=' + this.ids;
+				const baseApi = this.baseApi
+				let url = 'user/order/prepareCheckout?idCarts=' + this.ids
 				if (this.chooseAddrId) {
-					url += '&chosenAddressId=' + this.chooseAddrId;
+					url += '&chosenAddressId=' + this.chooseAddrId
 				}
 				this.$u.get(url).then(res => {
 					let addr = res.addr;
 					if (!this.addr || !this.addr.name) {
-						this.addr.name = '请选择收获地址';
+						this.addr.name = '请选择收获地址'
 					} else {
-						this.addr = res.addr;
+						this.addr = res.addr
 					}
-					let cartList = res.list;
+					let cartList = res.list
 					for (const index in cartList) {
 						let cart = cartList[index]
 
 					}
-					this.cartList = cartList;
+					this.cartList = cartList
 				});
 			},
 			formatPrice(price) {
-				return (price / 100).toFixed(2);
+				return (price / 100).toFixed(2)
 			},
 			chooseAddr() {
 				this.$u.route({
@@ -116,23 +115,22 @@
 				})
 			},
 			submit() {
-				if (!this.addr || !this.addr.name) {
-					this.$u.toast('请选择收货地址');
-					return;
+				if (!this.addr || !this.addr.tel || this.addr.tel == '') {
+					this.$u.toast('请选择收货地址')
+					return
 				}
-				// user/order/save?idAddress=1&message=&idCarts=37,38
-				let idCarts = '';
+				let idCarts = ''
 				for (var i in this.cartList) {
-					idCarts += this.cartList[i].id + ',';
+					idCarts += this.cartList[i].id + ','
 				}
 				const params = {
 					idAddress: this.chooseAddrId,
 					idCarts: idCarts
 				}
-				console.log('params', params);
-
 				this.$u.post('user/order/save?idAddress=' + this.chooseAddrId + '&idCarts=' + idCarts).then(res => {
-					const order = res;
+					const order = res
+					uni.setStorageSync('chooseAddrId', undefined)
+					uni.getStorageSync('idCarts', undefined)
 					this.$u.route({
 						url: '/pages/order/payment/payment',
 						params: {
