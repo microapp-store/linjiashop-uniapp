@@ -55,55 +55,56 @@ export default {
 		}
 	},
 	onLoad(option){
-		this.id = option.id;
+		this.id = option.id
 		if(this.id){
-			this.init();
+			this.init()
 		}else{
-			this.id = '';
+			this.id = ''
+			//显示默认的地区
+			this.defaultRegion = ["11", "1101", "110101"]
 		}
 	},
 	methods: {
 		init(){
 			this.$u.get('user/address/'+this.id).then( res => {
+				console.log('res1',res)
 				const code1 = res.areaCode.substr(0,2);
 				const code2 = res.areaCode.substr(0,4);
 				const code3 = res.areaCode;
 				this.defaultRegion = [code1,code2,code3];
+				console.log('default',this.defaultRegion);
 				this.address = res;
 			});
 		},
 		setDefault() {},
 		showRegionPicker() {
-			this.show = true;
+			this.show = true
 		},
 		confirmArea(e){
-			console.log("e",e);
-			this.address.areaCode = e.area.value;
+			this.address.areaCode = e.area.value
 			//设置选择器默认值
-			this.defaultRegion = [e.province.value,e.city.value,e.area.value];
-			
+			this.defaultRegion = [e.province.value,e.city.value,e.area.value]
 			//设置输入框值
-			this.address.province = e.province.label;
-			this.address.city = e.city.label;
-			this.address.district = e.area.label;
+			this.address = {isDefault:false}
+			this.address.province = e.province.label
+			this.address.city = e.city.label
+			this.address.district = e.area.label
 		},
 		changeDefault(e){
-			console.log('e',e);
 			if(this.address.id){
-			this.$u.post('user/address/'+this.address.id+'/'+e).then( res => {
-				this.$u.toast(e?'设置默认地址':'取消默认地址'); 
-			});
+				this.$u.post('user/address/'+this.address.id+'/'+e).then( res => {
+					this.$u.toast(e?'设置默认地址':'取消默认地址')
+				})
 			}
 		},
 		save(){
 			this.$u.post('user/address/save',this.address).then( res => {
-				this.$u.toast('保存成功'); 
-			});
+				this.$u.route('/pages/address/list')
+			})
 		},
 		del(){
 			this.$u.delete('user/address/'+this.address.id).then( res => {
-				this.$u.toast('保存成功');
-				this.$u.route('/pages/address/list');
+				this.$u.route('/pages/address/list')
 			})
 		}
 	}

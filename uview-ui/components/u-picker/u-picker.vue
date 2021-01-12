@@ -305,6 +305,9 @@ export default {
 		// 如果地区发生变化，为了让picker联动起来，必须重置this.citys和this.areas
 		regionChange(val) {
 			this.citys = citys[this.province];
+			if(this.province==''){
+				return;
+			}
 			this.areas = areas[this.province][this.city];
 		},
 		// watch监听月份的变化，实时变更日的天数，因为不同月份，天数不一样
@@ -493,7 +496,10 @@ export default {
 				tmp = this.areaCode[1];
 				useCode = true;
 			} else if (this.defaultRegion.length) tmp = this.defaultRegion[1];
-			else tmp = 0;
+			else tmp = 0; 
+			if(this.province==''){
+				return;
+			}
 			citys[this.province].map((v, k) => {
 				if (useCode ? v.value == tmp : v.label == tmp) {
 					tmp = k;
@@ -512,6 +518,9 @@ export default {
 				useCode = true;
 			} else if (this.defaultRegion.length) tmp = this.defaultRegion[2];
 			else tmp = 0;
+			if(this.province==''){
+				return;
+			}
 			areas[this.province][this.city].map((v, k) => {
 				if (useCode ? v.value == tmp : v.label == tmp) {
 					tmp = k;
