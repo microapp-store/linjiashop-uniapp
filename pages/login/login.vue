@@ -16,6 +16,7 @@
 		</view>
 		<view class="bottom">
 			<view class="loginType">
+				<!-- #ifdef APP-PLUS -->
 				<view class="wechat item" @click="loginBy('wechat')">
 					<view class="icon">
 						<u-icon size="70" name="weixin-fill" color="rgb(83,194,64)"></u-icon>
@@ -28,6 +29,7 @@
 					</view>
 					QQ
 				</view>
+				<!-- #endif -->
 			</view>
 			<view class="hint">
 				登录代表同意
