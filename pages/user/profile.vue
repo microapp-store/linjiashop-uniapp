@@ -56,7 +56,7 @@
 		},
 		onShow() {
 			// #ifdef H5
-			this.init()
+			this.initH5()
 			// #endif
 		},
 		methods: {

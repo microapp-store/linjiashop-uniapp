@@ -59,7 +59,6 @@
 			}
 		},
 		onLoad(){
-			this.$u.toast('测试账号15011112222');
 		},
 		methods: {
 			submit() {

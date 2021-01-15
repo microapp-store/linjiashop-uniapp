@@ -4,7 +4,7 @@
 			<u-cell-item icon="bag" title="订单编号" :arrow="false" :value="orderSn"></u-cell-item>
 			<u-cell-item icon="rmb" title="应付金额" :arrow="false" :value="totalPriceFmt"></u-cell-item>
 		</u-cell-group>
-		<u-radio-group v-model="payType">
+		<u-radio-group v-model="payType" style="width:100%;">
 			<view class="item" v-for="(res, index) in payWayList" :key="res.name">
 				<u-row>
 					<u-col :span="11">
@@ -38,12 +38,8 @@
 						name: 'wxpay',
 						text: '微信支付',
 						img: '/static/img/wxpay.png'
-					},
-					{
-						name: 'alipay',
-						text: '支付宝',
-						img: '/static/img/alipay.png'
 					}
+
 				]
 			}
 		},
@@ -53,13 +49,24 @@
 			}
 		},
 		onLoad(option) {
-			this.orderSn = option.orderSn;
-			this.totalPrice = option.totalPrice;
+			this.orderSn = option.orderSn
+			this.totalPrice = option.totalPrice
+			//使用微信访问本系统的时候获取微信openid，否则不获取
+			const userAgent = window.navigator.userAgent.toLowerCase()
+			if (userAgent.indexOf('micromessenger') <= -1) {
+				this.payWayList.push({
+					name: 'alipay',
+					text: '支付宝',
+					img: '/static/img/alipay.png'
+				})
+			}
 			this.init()
+
+
 		},
 		methods: {
 			init() {
-				this.$u.get('pay/queryResult/' + this.orderSn).then(res => { 
+				this.$u.get('pay/queryResult/' + this.orderSn).then(res => {
 					//如果当前订单已经支付成功跳转到订单详情页
 					if (res == true) {
 						this.$u.route({
@@ -90,9 +97,10 @@
 					})
 				}
 				// #endif
-				// this.$u.toast(this.payType+'支付完善中'); 
+				
 				// #ifndef H5
 				if ('wxpay' === this.payType) {
+					
 					this.$u.post('pay/wx/prepare?orderSn=' + this.orderSn).then(res => {
 						uni.requestPayment({
 							provider: 'wxpay',
@@ -100,13 +108,13 @@
 							success: (e) => {
 								console.log("success", e);
 								uni.showToast({
-									title: "完成支付(功能测试种)!"
+									title: "完成支付(APP功能测试种)!"
 								})
 							},
 							fail: (e) => {
 								console.log("fail", e);
 								uni.showModal({
-									content: "支付失败,原因为: " + e.errMsg,
+									content: "APP支付失败,原因为: " + e.errMsg,
 									showCancel: false
 								})
 							},
@@ -147,14 +155,8 @@
 						paySign: paySign, // 支付签名
 						success: function(res) {
 							// 支付成功后的回调函数
-							 
-								this.$u.route({
-									url: '/pages/order/payment/callback',
-									params: {
-										orderSn: this.orderSn
-									}
-								})
-							 
+							me.queryPayResult()
+
 						},
 						fail: function(res) {
 							alert('fail' + JSON.stringify(res))
@@ -169,7 +171,17 @@
 					// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
 					/*alert("config信息验证失败")*/
 				})
-			}
+			},
+			queryPayResult() {
+				this.$u.get('pay/queryResult/' + this.orderSn).then(res => {
+					this.$u.route({
+						url: '/pages/order/detail',
+						params: {
+							orderSn: this.orderSn
+						}
+					})
+				})
+			},
 		}
 	}
 </script>

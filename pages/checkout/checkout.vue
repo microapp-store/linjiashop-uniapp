@@ -58,7 +58,7 @@
 					name: '',
 					tel: ''
 				},
-				chooseAddrId: undefined,
+				chooseAddrId: '',
 				cartList: []
 			}
 		},
@@ -69,17 +69,20 @@
 			}
 		},
 		onShow() {
-			let chooseAddrId = uni.getStorageSync('chooseAddrId')
-			if (chooseAddrId && chooseAddrId !== this.chooseAddrId) {
-				this.chooseAddrId = chooseAddrId
+			let chooseAddrId = uni.getStorageSync('chooseAddrId') 
+			this.chooseAddrId = chooseAddrId
+			if(chooseAddrId!='' && chooseAddrId== this.chooseAddrId){ 
+				//用户跳转到地址列表选择但是没有更改收获地址
+			}else{				
 				this.init()
 			}
+			 
+		
 		},
 		onLoad(option) {
 			this.ids = option.ids
 			uni.setStorageSync('idCarts', option.ids)
-			console.log("idCarts from cache", uni.getStorageSync('idCarts'))
-			this.init();
+		 
 		},
 		methods: {
 			init() {
@@ -89,11 +92,12 @@
 					url += '&chosenAddressId=' + this.chooseAddrId
 				}
 				this.$u.get(url).then(res => {
-					let addr = res.addr;
-					if (!this.addr || !this.addr.name) {
+					let addr = res.addr
+					if (!addr || !addr.name) {
 						this.addr.name = '请选择收获地址'
 					} else {
-						this.addr = res.addr
+						this.addr = addr
+						this.chooseAddrId = addr.id
 					}
 					let cartList = res.list
 					for (const index in cartList) {
