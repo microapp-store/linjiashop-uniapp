@@ -27,7 +27,9 @@
 </template>
 
 <script>
+	// #ifdef H5
 	import wx from '@/common/weixin-js-sdk'
+	//#endif
 	export default {
 		data() {
 			return {
@@ -104,22 +106,33 @@
 					this.$u.post('pay/wx/prepare?orderSn=' + this.orderSn).then(res => {
 						uni.requestPayment({
 							provider: 'wxpay',
-							orderInfo: res,
-							success: (e) => {
-								console.log("success", e);
-								uni.showToast({
-									title: "完成支付(APP功能测试种)!"
-								})
+							timeStamp: res.timeStamp, //时间戳
+							nonceStr:res.nonceStr, //随机字符串
+							package: res.packageValue, //统一下单接口返回的 prepay_id 参数值
+							signType:res.signType,
+							paySign: res.paySign, //签名内容
+							success: (e) => { 
+								me.queryPayResult()
 							},
 							fail: (e) => {
 								console.log("fail", e);
-								uni.showModal({
-									content: "APP支付失败,原因为: " + e.errMsg,
-									showCancel: false
+								if(e.errMsg.indexOf('denied')>-1){ 
+									uni.showModal({
+										content: '该小程序暂未开通支付功能',
+										showCancel: false
+									})
+								}else{
+									uni.showModal({
+										content: "APP支付失败,原因为: " + e.errMsg,
+										showCancel: false
+									})
+								}
+								this.$u.route({
+									url: '/pages/order/detail',
+									params: {
+										orderSn: this.orderSn
+									}
 								})
-							},
-							complete: () => {
-								// this.providerList[index].loading = false;
 							}
 						})
 					});
@@ -158,18 +171,18 @@
 							me.queryPayResult()
 
 						},
-						fail: function(res) {
-							alert('fail' + JSON.stringify(res))
+						fail: function(res) { 
 							//失败回调函数
 							this.$u.toast('支付失败')
+							this.$u.route({
+								url: '/pages/order/detail',
+								params: {
+									orderSn: this.orderSn
+								}
+							})
+							
 						}
 					})
-				})
-				wx.error(function(res) {
-					console.log('微信支付失败', res)
-					Toast('支付失败')
-					// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-					/*alert("config信息验证失败")*/
 				})
 			},
 			queryPayResult() {
