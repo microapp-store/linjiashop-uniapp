@@ -11,8 +11,7 @@
 - 项目地址[gitee](https://gitee.com/microapp/linjiashop-uniapp),[github](https://github.com/microapp-store/linjiashop-uniapp)
 - [官方文档：http://microapp.gitee.io/linjiashop/](http://microapp.gitee.io/linjiashop/ecosystem/uniapp.html)
 - linjiashop-uniapp使用了[uView组件](https://www.uviewui.com)作为前端框架，开发过程可以多看其官方文档
-- [点击加群交流反馈：254059156](http://qm.qq.com/cgi-bin/qm/qr?k=EEHjlB4XyM-Kh2eMCbRPRoT38-V3au0T&authKey=NE856fZKPJLjtJTwOA1MlWWtcATVwT4e3zhjCOHeye8am2posApW%2Fw%3D%3D&group_code=254059156)
-
+- 加群交流反馈：909904351
 ## 演示
 
 - H5：[http://linjiashop-uni.microapp.store/](http://linjiashop-uni.microapp.store/) 浏览器打开后通过F12打开控制台使用手机模式查看
