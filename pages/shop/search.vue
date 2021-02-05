@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<u-navbar :custom-back="toHome">
+		<u-navbar :custom-back="toBack">
 			<view class="slot-wrap">
 				<u-search placeholder="搜商品名称" v-model="listQuery.keyword" :clearabled="true" @search="search" @custom="search" @clear="clear"></u-search>
 			</view>
@@ -57,15 +57,13 @@
 				return (price / 100).toFixed(2);
 			},
 
-			toHome() {
+			toBack() {
 				this.$u.route({
-					type: 'switchTab',
-					url: '/pages/shop/index'
+					type: 'back',
+					delta:1
 				})
 			},
 			search() {
-				console.log("keyword", this.listQuery.keyword);
-
 				const keyword = this.listQuery.keyword;
 				if (keyword == '') {
 					this.init();
