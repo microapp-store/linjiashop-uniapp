@@ -63,15 +63,16 @@
 				}
 
 				this.$u.post('loginOrReg?mobile=' + this.mobile + '&smsCode=' + value).then(res => {
-					this.$u.vuex('vuex_token', res.token);
-					this.$u.vuex('vuex_user', res.user);
+					uni.clearStorageSync()
+					this.$u.vuex('vuex_token', res.token)
+					this.$u.vuex('vuex_user', res.user)
 					//优先展示手动上传的头像
 					if (res.user.avatar && res.user.avatar !== '') {
 						this.$u.vuex('vuex_avatar', this.baseApi + '/file/getImgStream?idFile=' + res.user.avatar);
 					} else {
 						if (res.user.wechatHeadImgUrl && res.user.wechatHeadImgUrl !== '') {
 							//如果拉取到用户微信头像，则展示微信头像
-							this.$u.vuex('vuex_avatar', res.user.wechatHeadImgUrl);
+							this.$u.vuex('vuex_avatar', res.user.wechatHeadImgUrl)
 						}
 					}
 

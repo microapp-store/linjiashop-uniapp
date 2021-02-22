@@ -69,20 +69,17 @@
 			}
 		},
 		onShow() {
-			let chooseAddrId = uni.getStorageSync('chooseAddrId') 
+			let chooseAddrId = uni.getStorageSync('chooseAddrId')
+			console.log('defAddrId', chooseAddrId)
 			this.chooseAddrId = chooseAddrId
-			if(chooseAddrId!='' && chooseAddrId== this.chooseAddrId){ 
-				//用户跳转到地址列表选择但是没有更改收获地址
-			}else{				
-				this.init()
-			}
-			 
-		
+			this.init()
+
+
 		},
 		onLoad(option) {
 			this.ids = option.ids
 			uni.setStorageSync('idCarts', option.ids)
-		 
+
 		},
 		methods: {
 			init() {

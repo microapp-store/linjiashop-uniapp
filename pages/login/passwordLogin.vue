@@ -48,12 +48,13 @@
 			submit() {
 
 				if (!(this.tel && this.tel.length == 11 && this.tel.startsWith('1'))) {
-					this.$u.toast('请输入正确手机号');
-					return;
+					this.$u.toast('请输入正确手机号')
+					return
 				}
 				this.$u.post('loginByPass?mobile=' + this.tel + '&password=' + this.password).then(res => {
-					this.$u.vuex('vuex_token', res.token);
-					this.$u.vuex('vuex_user', res.user);
+					uni.clearStorageSync()
+					this.$u.vuex('vuex_token', res.token)
+					this.$u.vuex('vuex_user', res.user)
 					console.log('user', res.user)
 					if (res.user.avatar && res.user.avatar !== '') {
 						console.log('avatar', this.baseApi + '/file/getImgStream?idFile=' + res.user.avatar);
@@ -64,8 +65,8 @@
 						url: '/pages/user/profile'
 					})
 				}).catch(res => {
-					console.log("err", res);
-					this.$u.toast(res.msg);
+					console.log("err", res)
+					this.$u.toast(res.msg)
 				})
 			},
 			goPage(url) {
