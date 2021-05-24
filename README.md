@@ -14,7 +14,7 @@
 - 加群交流反馈：909904351
 ## 演示
 
-- H5：[http://linjiashop-uni.microapp.store/](http://linjiashop-uni.microapp.store/) 浏览器打开后通过F12打开控制台使用手机模式查看
+- H5：[http://linjiashop.microapp.store/](http://linjiashop.microapp.store/) 浏览器打开后通过F12打开控制台使用手机模式查看
 - App:[http://fir.microapp.store/linjiashop](http://fir.microapp.store/linjiashop)
 - 微信小程序：请自己用微信开发工具预览
 
@@ -34,7 +34,7 @@
 
 #### **material-admin** —— [web-flash的单体版本（相对于web-flash的前后端分离版本）](https://enilu.gitee.io/material-admin/)
 <br>
- 
- 
+
+
 ## 版权信息
 本项目遵循[MIT](https://en.wikipedia.org/wiki/MIT_License)开源协议，意味着您无需支付任何费用，也无需授权，即可将linjiashop-uniapp应用到您的产品中。
