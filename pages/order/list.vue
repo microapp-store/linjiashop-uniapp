@@ -458,6 +458,8 @@
 			}
 
 			.content {
+				flex: 1;
+				
 				.title {
 					font-size: 28rpx;
 					line-height: 50rpx;
