@@ -56,6 +56,8 @@ import random from './libs/function/random.js'
 import trim from './libs/function/trim.js'
 // toast提示，对uni.showToast的封装
 import toast from './libs/function/toast.js'
+// 拼接图片地址
+import getImgPath from './libs/function/getImgPath.js'
 // 获取父组件参数
 import getParent from './libs/function/getParent.js'
 // 获取整个父组件
@@ -99,6 +101,7 @@ const $u = {
 	random,
 	deepClone,
 	deepMerge,
+	getImgPath,
 	getParent,
 	$parent,
 	addUnit,
