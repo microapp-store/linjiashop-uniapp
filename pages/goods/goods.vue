@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="goods-detail-wrapper">
 		<u-swiper :list="goods.thumb" height="800"></u-swiper>
 		<view class="content">
 			<view class="title">{{ goods.name }}</view>
@@ -331,6 +331,9 @@
 
 
 <style lang="scss" scoped>
+	.goods-detail-wrapper {
+		padding-bottom: 140rpx;
+	}
 	.content {
 		padding: 30rpx;
 
