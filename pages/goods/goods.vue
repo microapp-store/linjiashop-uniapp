@@ -155,20 +155,11 @@
 						goods.thumb.push(baseApi + '/file/getImgStream?idFile=' + gallery[index])
 					}
 					this.goods = goods
+					if(res.favorite === true){
+						this.likeColor = 'error'
+						this.ifLike = true
+					}
 				});
-				const user = this.vuex_user;
-				if (user.mobile) {
-					this.$u.get('user/cart/count').then(res => {
-						this.cartCount = res === 0 ? '' : res
-					});
-					this.$u.get('user/favorite/ifLike/' + this.goods.id).then(res => {
-						if (res === true) {
-							this.likeColor = 'error'
-							this.ifLike = true
-
-						}
-					});
-				}
 			},
 			toHome() {
 				this.$u.route({
