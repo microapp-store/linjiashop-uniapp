@@ -207,10 +207,9 @@
 				this.showSku = true;
 			},
 			buy() {
-				const idSku = '';
+				let idSku = '';
 				if (!this.sku.none_sku) {
-					const idSku = this.sku.sel.id;
-					console.log('idSku',idSku);
+					idSku = this.sku.sel.id;
 					if(!idSku){
 						this.$u.toast('请选择商品规格')
 						return ;
