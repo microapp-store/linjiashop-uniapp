@@ -2,28 +2,35 @@
 	<view class="wrap">
 		<u-navbar :custom-back="back" title="喜欢的商品">
 
-			<view class="navbar-right" slot="right">
+			<view class="navbar-right" slot="right" v-if="favList.length!=0">
 				<view class="link-text" @click="onClickRight">
 					{{rightText}}
 				</view>
 			</view>
 		</u-navbar>
+		<view class="no-data" v-if="favList.length ===0 ">
+			<view class="content">
+				<u-icon name="heart" size="80" /><br>
+				收藏列表还是空的
+			</view>
+			<u-button shape="circle" @click="toHome">去逛逛</u-button>
+		</view>
 		<view class="gl-body">
 			<u-row v-for="(item,index) in favList" :key="index">
-				<u-col :span="1" v-if="showEdit">
-					<u-checkbox @change="changeCheckBox" v-model="item.checked" shape="circle"></u-checkbox>
+				<u-col :span="2" v-if="showEdit">
+					<u-checkbox @change="changeCheckBox" v-model="checkList[index]" shape="circle"></u-checkbox>
 				</u-col>
 				<u-col :span="4" class="gl-img">
 					<u-image width="170rpx" height="170rpx" :src="item.goods.img" @click="toDetail(item.goods.id)"></u-image>
 				</u-col>
-				<u-col :span="showEdit?7:8" @click="toDetail(item.goods.id)">
+				<u-col :span="showEdit?6:8" @click="toDetail(item.goods.id)">
 					<view class="gl-name">{{item.goods.name}}</view>
 					<view class="gl-descript">{{item.goods.descript}}</view>
 					<view class="gl-price">￥{{formatPrice(item.goods.price)}}</view>
 				</u-col>
 			</u-row>
 		</view>
-		<view class="navigation" v-if="showEdit">
+		<view class="navigation" v-if="showEdit && favList.length>0">
 			<view class="left">
 				<view class="item">
 					<u-checkbox @change="checkAll" v-model="checkedAll" shape="circle">全选</u-checkbox>
@@ -41,10 +48,12 @@
 	export default {
 		data() {
 			return {
+				test:true,
+				checkList:[],
 				favList: [],
 				rightText: '管理',
 				showEdit: false,
-				delDisabled: true,
+				delDisabled: false,
 				checkedAll: false
 			}
 		},
@@ -56,12 +65,16 @@
 				const baseApi = this.baseApi;
 				this.$u.get('user/favorite/list').then(res => {
 					let favList = res;
+					let checkList = new Array()
 					for (var index in favList) {
-						const item = favList[index];
-						item.checked = false;
+						const item = favList[index]; 
+						checkList[index] = true
 						item.goods.img = baseApi + '/file/getImgStream?idFile=' + item.goods.pic;
+						
 					}
-					this.favList = favList;
+					this.checkList = checkList 
+					this.checkedAll = true
+					this.favList = favList
 				});
 			},
 			formatPrice(price) {
@@ -81,31 +94,34 @@
 				this.delDisabled = false;
 			},
 			checkAll() {
+				console.log('checkedAll',this.checkedAll)
 				if (this.checkedAll) {
 					this.delDisabled = true;
-					for (var i in this.favList) {
-						this.favList[i].checked = false;
+					for (var i in this.checkList) {
+						this.checkList[i] = false;
 					}
 				} else {
 					this.delDisabled = false;
-					for (var i in this.favList) {
-						this.favList[i].checked = true;
+					let checkList = this.checkList
+					for (var i in checkList) {
+						checkList[i] = true;
 					}
+					this.checkList = checkList
+					console.log("checkList",checkList)
 				}
 				this.checkedAll = !this.checkedAll; 
 			},
 			del(){
 				let idChechkedArr = new Array();
-				for(const i in this.favList){
-					if(this.favList[i].checked){
+				for(const i in this.checkList){
+					if(this.favList[i]){
 						idChechkedArr.push(this.favList[i].id);
 					}
 				}
 				if(idChechkedArr.length == 0){
 					this.$u.toast('请选择要移出收藏的商品');
 					return ;
-				}
-				console.log('ids',idChechkedArr);
+				} 
 				this.$u.post('user/favorite/dislikeBatch',idChechkedArr).then( res => {
 					this.$u.toast('已取消收藏');
 					this.init();
@@ -118,6 +134,13 @@
 						id: id
 					}
 				})
+			},
+			toHome() {
+				this.$u.route({
+					type: 'switchTab',
+					url: '/pages/shop/index'
+				});
+			
 			}
 		}
 	}
@@ -193,6 +216,16 @@
 			align-items: center;
 			margin-right: 60rpx;
 
+		}
+	}
+	.no-data {
+		padding: 0rpx 30rpx;
+		margin-top: 50%;
+	
+		.content {
+			text-align: center;
+			color: lightgray;
+			margin-bottom: 30rpx;
 		}
 	}
 </style>

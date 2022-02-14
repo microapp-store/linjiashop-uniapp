@@ -17,16 +17,16 @@
 			<view class="left">
 
 				<view class="item" @click="toHome">
-					<u-icon name="home" :size="40" :color="$u.color['contentColor']"></u-icon>
+					<u-icon name="home" :size="40"></u-icon>
 					<view class="text u-line-1">主页</view>
 				</view>
 				<view class="item" @click="like">
-					<u-icon name="heart" :size="40" :color="$u.color[likeColor]"></u-icon>
+					<u-icon name="heart" :size="40" :color="likeColor"></u-icon>
 					<view class="text u-line-1">收藏</view>
 				</view>
 				<view class="item car" @click="toCart">
 					<u-badge class="car-num" :count="cartCount" type="error" :offset="[-3, -6]"></u-badge>
-					<u-icon name="shopping-cart" :size="40" :color="$u.color['contentColor']"></u-icon>
+					<u-icon name="shopping-cart" :size="40" ></u-icon>
 					<view class="text u-line-1">购物车</view>
 				</view>
 			</view>
@@ -125,11 +125,12 @@
 			}
 		},
 		onLoad(option) {
-			this.goods.id = option.id;
-			this.init();
+			this.goods.id = option.id
+			this.init()
 		},
 		methods: {
 			init() {
+				this.getCartCount()
 				const baseApi = this.baseApi;
 				this.$u.get('goods/' + this.goods.id).then(res => {
 					let goods = res.goods
@@ -216,7 +217,7 @@
 					this.showSku = false;
 					if ('cart' == this.actionType) {
 						this.$u.toast('成功加入购物车');
-						this.init();
+						this.init()
 
 					} else {
 						this.$u.route({
@@ -314,6 +315,11 @@
 					this.sku.sel = {};
 				}
 				console.log('sku', this.sku)
+			},
+			getCartCount(){
+				this.$u.get('user/cart/count').then( res => {
+					this.cartCount = res
+				})
 			}
 		}
 	}

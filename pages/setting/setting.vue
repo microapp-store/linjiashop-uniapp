@@ -20,8 +20,9 @@
 		<view class="u-m-t-20">
 			<u-cell-group>
 				<u-cell-item icon="info-circle" title="关于邻家小铺" @click="openPage('/pages/setting/about')"></u-cell-item>
+				<!--  #ifdef   H5 || APP-PLUS -->
 				<u-cell-item icon="file-text" title="在线文档" @click="toDoc"></u-cell-item>
-
+				<!--  #endif -->
 			</u-cell-group>
 		</view>
 		<view class="u-m-t-20">
@@ -138,11 +139,16 @@
 				});
 			},
 			logout() {
-				this.$u.vuex('vuex_token', '');
+				this.$u.vuex('vuex_token', '')
+				this.$u.vuex('vuex_avatar','')
 				this.$u.vuex('vuex_user', {
 					nickName: '未登录'
 				});
-				this.$u.route('/pages/login/login')
+				
+				this.$u.route({
+					url:'/pages/login/login',
+					params:{}
+				})
 			},
 			toDoc() {
 				this.$u.route('/pages/setting/document')
