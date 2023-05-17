@@ -1,23 +1,24 @@
 {
   "name": "邻家小铺",
   "version": "1.0.0",
-  "description": "<p align=\"center\">\r     <img alt=\"logo\" src=\"https://uviewui.com/common/logo.png\" width=\"120\" height=\"120\" style=\"margin-bottom: 10px;\">\r </p>\r <h3 align=\"center\" style=\"margin: 30px 0 30px;font-weight: bold;font-size:40px;\">uView</h3>\r <h3 align=\"center\">多平台快速开发的UI框架</h3>",
+  "description": "<p align=\"center\">\r     <img alt=\"logo\" src=\"http://linjiashop.enilu.cn/linjiashop/logo.jpg\" width=\"120\" height=\"120\" style=\"margin-bottom: 10px;\">\r </p>\r <h3 align=\"center\" style=\"margin: 30px 0 30px;font-weight: bold;font-size:40px;\">linjiashop-uniapp</h3>\r <h3 align=\"center\">轻量，简洁的单商户商城系统</h3>",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YanxinNet/uView.git"
+    "url": "git+https://gitee.com/microapp/linjiashop.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/YanxinNet/uView/issues"
+    "url": "https://gitee.com/microapp/linjiashop/issues"
   },
-  "homepage": "https://github.com/YanxinNet/uView#readme",
+  "homepage": "http://linjiashop.enilu.cn/linjiashop/ecosystem/uniapp.html",
   "dependencies": {
+    "crypto-js": "^4.1.1",
     "vue-i18n": "^8.20.0"
   }
 }

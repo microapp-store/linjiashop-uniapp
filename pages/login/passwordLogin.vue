@@ -27,6 +27,7 @@
 </template>
 
 <script>
+	import AesUtil  from "@/common/aes"
 	export default {
 		data() {
 			return {
@@ -51,7 +52,7 @@
 					this.$u.toast('请输入正确手机号')
 					return
 				}
-				this.$u.post('loginByPass?mobile=' + this.tel + '&password=' + this.password).then(res => {
+				this.$u.post('loginByPass?mobile=' + this.tel + '&password=' + AesUtil.encrypt(this.password)).then(res => {
 					uni.clearStorageSync()
 					this.$u.vuex('vuex_token', res.token)
 					this.$u.vuex('vuex_user', res.user)
