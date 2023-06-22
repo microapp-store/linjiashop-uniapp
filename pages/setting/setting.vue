@@ -108,7 +108,7 @@
 				this.nickName.show = true;
 			},
 			submitNickName() {
-				this.$u.post('user/updateUserName/' + this.nickName.value).then(res => {
+				this.$u.post('user/updateUserName?userName='+ this.nickName.value).then(res => {
 					let user = this.vuex_user;
 					user.nickName = this.nickName.value;
 					this.$u.vuex('vuex_user', user);
