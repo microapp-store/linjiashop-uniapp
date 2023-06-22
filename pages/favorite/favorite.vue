@@ -18,7 +18,7 @@
 		<view class="gl-body">
 			<u-row v-for="(item,index) in favList" :key="index">
 				<u-col :span="2" v-if="showEdit">
-					<u-checkbox @change="changeCheckBox" v-model="checkList[index]" shape="circle"></u-checkbox>
+					<u-checkbox @change="changeCheckBox" v-model="checkList[index]"  ></u-checkbox>
 				</u-col>
 				<u-col :span="4" class="gl-img">
 					<u-image width="170rpx" height="170rpx" :src="item.goods.img" @click="toDetail(item.goods.id)"></u-image>
@@ -33,12 +33,12 @@
 		<view class="navigation" v-if="showEdit && favList.length>0">
 			<view class="left">
 				<view class="item">
-					<u-checkbox @change="checkAll" v-model="checkedAll" shape="circle">全选</u-checkbox>
+					<u-checkbox @change="checkAll" v-model="checkedAll"  >全选</u-checkbox>
 				</view>
 
 			</view>
 			<view class="right">
-				<u-button type="error" shape="circle" :disabled="delDisabled" @click="del">删除</u-button>
+				<u-button type="error"   :disabled="delDisabled" @click="del">删除</u-button>
 			</view>
 		</view>
 	</view>
@@ -114,14 +114,14 @@
 			del(){
 				let idChechkedArr = new Array();
 				for(const i in this.checkList){
-					if(this.favList[i]){
+					if(this.checkList[i]){
 						idChechkedArr.push(this.favList[i].id);
 					}
 				}
 				if(idChechkedArr.length == 0){
 					this.$u.toast('请选择要移出收藏的商品');
 					return ;
-				} 
+				}			 
 				this.$u.post('user/favorite/dislikeBatch',idChechkedArr).then( res => {
 					this.$u.toast('已取消收藏');
 					this.init();
@@ -149,11 +149,12 @@
 
 <style lang="scss" scoped>
 	.wrap {
-		padding: 0rpx 30rpx;
+		
 	}
 
 	.gl-body {
-		padding-bottom: 80rpx;
+		padding:0rpx 30rpx;
+		padding-bottom: 130rpx;
 	}
 
 	.gl-title {
@@ -193,10 +194,9 @@
 		display: flex;
 		position: fixed;
 		bottom: 0;
-		margin-top: 100rpx;
+		padding:0rpx 30rpx;
 		border: solid 2rpx #f2f2f2;
 		background-color: #ffffff;
-		padding: 16rpx 0;
 		justify-content: space-between;
 
 		.left {
@@ -213,8 +213,7 @@
 		.right {
 			display: flex;
 			font-size: 28rpx;
-			align-items: center;
-			margin-right: 60rpx;
+			align-items: center; 
 
 		}
 	}
