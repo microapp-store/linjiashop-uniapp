@@ -130,7 +130,9 @@
 		},
 		methods: {
 			init() {
-				this.getCartCount()
+				if (this.vuex_user.nickName !=='未登录'){
+					this.getCartCount()
+				}
 				const baseApi = this.baseApi;
 				this.$u.get('goods/' + this.goods.id).then(res => {
 					let goods = res.goods
