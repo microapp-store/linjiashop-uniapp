@@ -238,14 +238,14 @@
 
 <style lang="scss" scoped>
 	.wrap {
-		padding: 0rpx 30rpx;
-
 		.navbar-right {
 			margin-right: 24rpx;
 			display: flex;
 		}
 
 		.list {
+			margin-bottom: 130rpx;
+			padding:0rpx 30rpx;
 			.item {
 				margin-top: 20rpx;
 
@@ -281,11 +281,10 @@
 			width: 100%;
 			display: flex;
 			position: fixed;
-			bottom: 10;
-			margin-top: 100rpx;
+			bottom: 100rpx;
 			border: solid 2rpx #f2f2f2;
 			background-color: #ffffff;
-			padding: 16rpx 0;
+			padding:30rpx 30rpx;
 			justify-content: space-between;
 
 			.left {
@@ -307,7 +306,6 @@
 				display: flex;
 				font-size: 28rpx;
 				align-items: center;
-				margin-right: 60rpx;
 
 			}
 		}
